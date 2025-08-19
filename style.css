@@ -4,12 +4,20 @@
   height: auto;   /* mantém proporção */
 }
 
+/* Container principal */
 .main-content {
   position: relative;
-  min-height: 100vh;  
-  padding-bottom: 50px; 
+  min-height: 100vh;       /* ocupa toda a altura da tela */
+  display: flex;           /* usa flexbox para centralizar conteúdo */
+  flex-direction: column;
+  justify-content: center; /* centraliza verticalmente */
+  align-items: center;     /* centraliza horizontalmente */
+  text-align: center;
+  padding: 40px 20px;      /* espaçamento interno */
+  box-sizing: border-box;  /* garante que padding não aumente tamanho total */
 }
 
+/* Imagem de fundo */
 .main-content::before {
   content: "";
   position: absolute;
@@ -17,10 +25,35 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("pegada-hidrica 1.jpg");
+  background-image: url("imagem/pegada-hidrica.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 1.0; /* ajusta a transparência */
-  z-index: -1;   /* fica atrás do conteúdo */
+  opacity: 0.3;  /* transparência suave para o fundo */
+  z-index: -1;    /* fica atrás do conteúdo */
+}
+
+/* Título */
+.main-content h1 {
+  text-align: center;       /* mantém o título centralizado */
+  padding-top: 50px;
+  font-size: 5.5rem;
+  margin-bottom: 20px;
+}
+
+.main-content .author {
+  text-align: right;        /* autor alinhado à direita */
+  font-size: 2rem;          /* tamanho menor que o título */
+  margin-top: 10px;
+  width: 100%;              /* garante que ocupe toda a largura da div */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .main-content h1 {
+    font-size: 2.5rem;
+  }
+  .main-content p {
+    font-size: 1.2rem;
+  }
 }
