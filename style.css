@@ -29,7 +29,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.3;  /* transparência suave para o fundo */
+  opacity: 1;  /* transparência suave para o fundo */
   z-index: -1;    /* fica atrás do conteúdo */
 }
 

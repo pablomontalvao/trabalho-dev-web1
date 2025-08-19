@@ -1,0 +1,111 @@
+.logo {
+  width: 100px;   /* controla a largura */
+  height: auto;   /* mantém proporção */
+}
+body {
+  background: linear-gradient(to bottom, #FFFFFF, #3AABDD);
+  background-attachment: fixed; /* Opcional: mantém o degradê fixo ao rolar a página */
+  margin: 0;
+  height: 100vh;
+}
+
+.sobre-nos {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Arial', sans-serif;
+  color: #0f2c54;
+}
+
+.sobre-header h1 {
+  text-align: center;
+  color: #0f2c54;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.sobre-intro {
+  text-align: center;
+  background: linear-gradient(to bottom, #4ca1af, #1c92d2);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+}
+
+.sobre-pilar {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.sobre-pilar strong {
+  color: #1c92d2;
+}
+
+.sobre-como h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: #0f2c54;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  background: linear-gradient(to bottom, #4ca1af, #1c92d2);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-bottom {
+  width: 650px; /* Fazendo o card inferior maior, como na imagem */
+}
+
+.card .icon img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+
+.main-content {
+  position: relative;
+  min-height: 100vh;       /* ocupa toda a altura da tela */
+  display: flex;           /* usa flexbox para centralizar conteúdo */
+  flex-direction: column;
+  justify-content: center; /* centraliza verticalmente */
+  align-items: center;     /* centraliza horizontalmente */
+  text-align: center;
+  padding: 40px 20px;      /* espaçamento interno */
+  box-sizing: border-box;  /* garante que padding não aumente tamanho total */
+}
+
+
+@media (max-width: 768px) {
+  .main-content h1 {
+    font-size: 2.5rem;
+  }
+  .main-content p {
+    font-size: 1.2rem;
+  }
+}
