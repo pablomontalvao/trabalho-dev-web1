@@ -3,3 +3,24 @@
   width: 100px;   /* controla a largura */
   height: auto;   /* mantém proporção */
 }
+
+.main-content {
+  position: relative;
+  min-height: 100vh;  
+  padding-bottom: 50px; 
+}
+
+.main-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("pegada-hidrica 1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1.0; /* ajusta a transparência */
+  z-index: -1;   /* fica atrás do conteúdo */
+}
