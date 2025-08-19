@@ -1,0 +1,5 @@
+/* Classe para a logo */
+.logo {
+  width: 100px;   /* controla a largura */
+  height: auto;   /* mantém proporção */
+}
