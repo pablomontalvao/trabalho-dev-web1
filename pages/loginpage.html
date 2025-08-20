@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="../CSS/login.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <title>Página de Login</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+      
+
+      <a class="navbar-brand" href="index.html">
+        <img src="../imagem/RAUlogobranca.png" alt="Logo da Empresa" class="logo">
+      </a>
+
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menuNavbar">
+        <ul class="navbar-nav ms-3"> <!-- ms-3 dá espaço entre logo e link -->
+          <li class="nav-item">
+            <a class="nav-link text-white" href="sobre.html">Sobre</a>
+          </li>
+        </ul>
+
+        <!-- Botão de login alinhado à direita -->
+        <div class="ms-auto">
+          <a class="nav-link text-white px-3" href="loginpage.html">Cadastro/Login</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container mt-5 containerPaiForm">
+      <h2 class="mt-5 text-center">LOGIN</h2>
+      <form>
+        <div class="form-group pt-4">
+          <label for="email">E-mail:</label>
+          <input type="email" class="form-control" id="email" placeholder="joao@gmail.com">
+        </div>
+        <div class="form-group pt-4">
+          <label for="password">Senha:</label>
+          <input type="password" class="form-control" id="senha" placeholder="********">
+        </div>
+        <button type="submit" class="btn btn-primary mt-4 d-flex mx-auto">Entrar</button>
+      </form>
+      <h3 class="mt-4 text-center">Esqueceu sua senha? <u><a href="cadastropage.html">Cadastrar.</a></u></h3>
+    </div>
+  </main>
+
+  <footer class="custom-footer text-center py-3 mt-auto w-100">
+    <p>&copy; “Trabalho final DWEB – Grupo RAU"</p>
+  </footer>
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</html>
