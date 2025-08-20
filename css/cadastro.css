@@ -1,0 +1,58 @@
+
+.form-control{
+    border-radius: 30px;
+    padding: 10px 10px 10px 15px;
+}
+.form-control::placeholder{
+    color: #bbbbbb;
+}
+
+main{
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  
+  background-color: #85daff;
+  background-image: url(../img/fundopaglogin.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply; 
+} 
+
+.btn {
+    border-radius: 30px;
+    padding: 7px 60px;
+    color: #FFF;
+    background-color: #3AABDD;
+    font-size: 20;
+    font-weight: 700;
+}
+h2{
+    color: #FFF;
+    font-size: 30px;
+    font-weight: 700;
+}
+h3{
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 700;
+}
+label{
+    color: #FFF;
+    font-weight: 600;
+}
+
+.containerPaiForm{
+    background-image: linear-gradient(#1D85C8, #004555);
+    border-radius: 15px;
+    padding: 20px 40px;
+    height: 680px;
+    width: 660px;
+    z-index: 1;
+}
+
