@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Área do Cliente - Submeter Relato</title>
+  <link rel="stylesheet" href="../css/areaCliente.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__content">
+      <div class="header__brand" aria-label="Logo">
+        <img class="header__logo" src="../img/logoBranca.png" alt="Logo da empresa" />
+      </div>
+      <nav class="header__nav" aria-label="Principal">
+        <a href="#" class="nav__link">HOME</a>
+        <a href="#" class="nav__link">SOBRE NÓS</a>
+      </nav>
+      <div class="header__user">
+        <span class="user__name">USUÁRIO 123</span>
+        <button class="btn btn--ghost" type="button">SAIR</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero__title">Valorizamos a sua colaboração para manter a excelência em nosso trabalho!</h1>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <a class="cta__pill" href="#formulario" title="Ir para o formulário">Faça sua reclamação aqui!</a>
+      </div>
+    </section>
+
+    <section class="claims">
+      <div class="container">
+        <div class="rule"></div>
+        <h2 class="section__title">Minhas reclamações:</h2>
+
+        <div class="filters" role="region" aria-label="Filtros">
+          <span class="filters__label">Filtros</span>
+          <div class="filters__row">
+            <div class="field">
+              <label for="f-status">Status:</label>
+              <select id="f-status">
+                <option value="">Todos</option>
+                <option value="recebido">Recebido</option>
+                <option value="andamento">Em andamento</option>
+                <option value="resolvido">Resolvido</option>
+              </select>
+            </div>
+            <div class="field field--wide">
+              <label for="f-endereco">Endereço:</label>
+              <input id="f-endereco" type="text" placeholder="Rua, bairro, cidade" />
+            </div>
+            <div class="field">
+              <label for="f-tipo">Tipo:</label>
+              <select id="f-tipo">
+                <option value="">Todos</option>
+                <option>Falta de água</option>
+                <option>Água suja/com cheiro</option>
+                <option>Vazamento de água limpa</option>
+                <option>Vazamento de esgoto</option>
+                <option>Despejo irregular</option>
+                <option>Outros</option>
+              </select>
+            </div>
+            <div class="field field--dates">
+              <label>Data:</label>
+              <div class="date-range">
+                <input type="date" aria-label="Data início" />
+                <input type="date" aria-label="Data fim" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="cards" id="claims-list" aria-live="polite">
+          <li class="card" data-id="1" data-status="recebido">
+            <div class="card__status">
+              <span class="status__label">Status</span>
+              <img class="status__icon" src="../img/checkRecebido.png" alt="Ícone status recebido" />
+              <span class="status__text status--recebido">Recebido</span>
+            </div>
+            <div class="card__body">
+              <div class="card__grid">
+                <div class="card__col"><span class="label">Tipo:</span><span class="value">Iluminação</span></div>
+                <div class="card__col"><span class="label">Endereço:</span><span class="value">Rua das Flores, 123 - Centro</span></div>
+                <div class="card__col"><span class="label">Data:</span><span class="value">12/08/2025</span></div>
+                <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Poste sem iluminação em frente ao número 123.</span></div>
+              </div>
+            </div>
+          </li>
+
+          <li class="card" data-id="2" data-status="andamento">
+            <div class="card__status">
+              <span class="status__label">Status</span>
+              <img class="status__icon" src="../img/checkEmAndamento.png" alt="Ícone status em andamento" />
+              <span class="status__text status--andamento">Em andamento</span>
+            </div>
+            <div class="card__body">
+              <div class="card__grid">
+                <div class="card__col"><span class="label">Tipo:</span><span class="value">Lixo</span></div>
+                <div class="card__col"><span class="label">Endereço:</span><span class="value">Av. Brasil, 456 - Jardim</span></div>
+                <div class="card__col"><span class="label">Data:</span><span class="value">10/08/2025</span></div>
+                <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Acúmulo de lixo não recolhido há três dias.</span></div>
+              </div>
+            </div>
+          </li>
+
+          <li class="card" data-id="3" data-status="resolvido">
+            <div class="card__status">
+              <span class="status__label">Status</span>
+              <img class="status__icon" src="../img/checkResolvido.png" alt="Ícone status resolvido" />
+              <span class="status__text status--resolvido">Resolvido</span>
+            </div>
+            <div class="card__body">
+              <div class="card__grid">
+                <div class="card__col"><span class="label">Tipo:</span><span class="value">Buraco na via</span></div>
+                <div class="card__col"><span class="label">Endereço:</span><span class="value">Rua A, 789 - Industrial</span></div>
+                <div class="card__col"><span class="label">Data:</span><span class="value">03/08/2025</span></div>
+                <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Buraco grande próximo à esquina, já tapado.</span></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="rule rule--bottom"></div>
+      </div>
+    </section>
+
+    <section id="formulario" class="form-section" aria-labelledby="form-title">
+      <div class="container">
+        <h2 id="form-title" class="section__title section__title--light">Formulário de Reclamações</h2>
+        <form class="form" id="complaint-form" action="#" method="post">
+          <div class="form__grid">
+            <div class="field field--span-2">
+              <label for="endereco">Endereço:</label>
+              <input id="endereco" name="endereco" type="text" required />
+            </div>
+
+            <div class="field">
+              <label for="numero">Número:</label>
+              <input id="numero" name="numero" type="text" inputmode="numeric" />
+            </div>
+
+            <div class="field">
+              <label for="complemento">Complemento:</label>
+              <input id="complemento" name="complemento" type="text" />
+            </div>
+
+            <div class="field">
+              <label for="data">Data:</label>
+              <input id="data" name="data" type="date" required />
+            </div>
+
+            <div class="field">
+              <label for="hora">Hora:</label>
+              <input id="hora" name="hora" type="time" required />
+            </div>
+
+            <div class="field">
+              <label for="tipo">Qual o tipo de problema?</label>
+              <select id="tipo" name="tipo" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="Falta de água">Falta de água</option>
+                <option value="Água suja/com cheiro">Água suja/com cheiro</option>
+                <option value="Vazamento de água limpa">Vazamento de água limpa</option>
+                <option value="Vazamento de esgoto">Vazamento de esgoto</option>
+                <option value="Despejo irregular">Despejo irregular</option>
+                <option value="Outros">Outros</option>
+              </select>
+            </div>
+
+            <div class="field field--span-2">
+              <label for="descricao">Descrição</label>
+              <textarea id="descricao" name="descricao" rows="5" required></textarea>
+            </div>
+          </div>
+
+          <div class="form__actions">
+            <button type="submit" class="btn btn--primary">Enviar</button>
+          </div>
+          <p class="form__note">Ao preencher o formulário de reclamação abaixo, você nos ajuda a identificar e resolver rapidamente qualquer interrupção ou problema.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" aria-hidden="true"></footer>
+
+  <script>
+    // Sistema de gerenciamento de reclamações
+    class ComplaintManager {
+      constructor() {
+        this.complaints = [];
+        this.nextId = 4; // Começa após os 3 cards existentes
+        this.init();
+      }
+
+      init() {
+        this.setupForm();
+        this.setupFilters();
+        this.loadExistingComplaints();
+      }
+
+      setupForm() {
+        const form = document.getElementById('complaint-form');
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.submitComplaint();
+        });
+      }
+
+      setupFilters() {
+        const statusFilter = document.getElementById('f-status');
+        const enderecoFilter = document.getElementById('f-endereco');
+        const tipoFilter = document.getElementById('f-tipo');
+        const dataInicioFilter = document.querySelector('input[type="date"]:first-of-type');
+        const dataFimFilter = document.querySelector('input[type="date"]:last-of-type');
+
+        [statusFilter, enderecoFilter, tipoFilter, dataInicioFilter, dataFimFilter].forEach(filter => {
+          if (filter) {
+            filter.addEventListener('input', () => this.applyFilters());
+          }
+        });
+        
+        // Garante que todos os cards sejam visíveis inicialmente
+        this.showAllCards();
+      }
+
+      showAllCards() {
+        console.log('Mostrando todos os cards...');
+        const cards = document.querySelectorAll('.card');
+        console.log('Total de cards encontrados:', cards.length);
+        
+        cards.forEach((card, index) => {
+          card.style.display = 'grid';
+          console.log(`Card ${index + 1} configurado como visível`);
+        });
+      }
+
+      loadExistingComplaints() {
+        console.log('Carregando reclamações existentes...');
+        // Carrega as reclamações existentes dos cards HTML
+        const existingCards = document.querySelectorAll('.card');
+        console.log('Cards encontrados:', existingCards.length);
+        
+        existingCards.forEach((card, index) => {
+          const id = parseInt(card.dataset.id);
+          const status = card.dataset.status;
+          const tipo = card.querySelector('.card__col:first-child .value').textContent;
+          const endereco = card.querySelector('.card__col:nth-child(2) .value').textContent;
+          const data = card.querySelector('.card__col:nth-child(3) .value').textContent;
+          const descricao = card.querySelector('.card__col--full .value').textContent;
+
+          this.complaints.push({
+            id,
+            status,
+            tipo,
+            endereco,
+            data,
+            descricao,
+            numero: '',
+            complemento: '',
+            hora: ''
+          });
+          
+          console.log(`Card ${index + 1} carregado: ID ${id}, Status: ${status}, Tipo: ${tipo}`);
+        });
+      }
+
+      submitComplaint() {
+        const formData = new FormData(document.getElementById('complaint-form'));
+        
+        const complaint = {
+          id: this.nextId++,
+          status: 'recebido',
+          endereco: formData.get('endereco'),
+          numero: formData.get('numero'),
+          complemento: formData.get('complemento'),
+          data: this.formatDate(formData.get('data')),
+          hora: formData.get('hora'),
+          tipo: formData.get('tipo'),
+          descricao: formData.get('descricao')
+        };
+
+        this.complaints.push(complaint);
+        this.addComplaintCard(complaint);
+        this.resetForm();
+        this.showSuccessMessage();
+        
+        // Rola para a seção de reclamações
+        document.querySelector('.claims').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      addComplaintCard(complaint) {
+        const cardsList = document.getElementById('claims-list');
+        const card = document.createElement('li');
+        card.className = 'card';
+        card.dataset.id = complaint.id;
+        card.dataset.status = complaint.status;
+
+        const enderecoCompleto = complaint.complemento 
+          ? `${complaint.endereco}, ${complaint.numero} - ${complaint.complemento}`
+          : `${complaint.endereco}, ${complaint.numero}`;
+
+        card.innerHTML = `
+          <div class="card__status">
+            <span class="status__label">Status</span>
+            <img class="status__icon" src="../img/checkRecebido.png" alt="Ícone status recebido" />
+            <span class="status__text status--recebido">Recebido</span>
+          </div>
+          <div class="card__body">
+            <div class="card__grid">
+              <div class="card__col"><span class="label">Tipo:</span><span class="value">${complaint.tipo}</span></div>
+              <div class="card__col"><span class="label">Endereço:</span><span class="value">${enderecoCompleto}</span></div>
+              <div class="card__col"><span class="label">Data:</span><span class="value">${complaint.data}</span></div>
+              <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">${complaint.descricao}</span></div>
+            </div>
+          </div>
+        `;
+
+        // Adiciona no início da lista
+        cardsList.insertBefore(card, cardsList.firstChild);
+      }
+
+      applyFilters() {
+        const statusFilter = document.getElementById('f-status').value;
+        const enderecoFilter = document.getElementById('f-endereco').value.toLowerCase();
+        const tipoFilter = document.getElementById('f-tipo').value;
+        const dataInicioFilter = document.querySelector('input[type="date"]:first-of-type').value;
+        const dataFimFilter = document.querySelector('input[type="date"]:last-of-type').value;
+
+        const cards = document.querySelectorAll('.card');
+        
+        cards.forEach(card => {
+          let show = true;
+          const status = card.dataset.status;
+          const tipo = card.querySelector('.card__col:first-child .value').textContent;
+          const endereco = card.querySelector('.card__col:nth-child(2) .value').textContent.toLowerCase();
+          const data = card.querySelector('.card__col:nth-child(3) .value').textContent;
+
+          // Filtro por status
+          if (statusFilter && status !== statusFilter) show = false;
+          
+          // Filtro por endereço
+          if (enderecoFilter && !endereco.includes(enderecoFilter)) show = false;
+          
+          // Filtro por tipo
+          if (tipoFilter && tipo !== tipoFilter) show = false;
+          
+          // Filtro por data (implementação básica)
+          if (dataInicioFilter || dataFimFilter) {
+            // Aqui você pode implementar lógica mais sofisticada de filtro por data
+            // Por enquanto, apenas mostra todos se houver filtro de data
+          }
+
+          card.style.display = show ? 'grid' : 'none';
+        });
+        
+        // Se nenhum filtro estiver ativo, mostra todos os cards
+        if (!statusFilter && !enderecoFilter && !tipoFilter && !dataInicioFilter && !dataFimFilter) {
+          this.showAllCards();
+        }
+      }
+
+      formatDate(dateString) {
+        if (!dateString) return '';
+        const date = new Date(dateString);
+        return date.toLocaleDateString('pt-BR');
+      }
+
+      resetForm() {
+        document.getElementById('complaint-form').reset();
+      }
+
+      showSuccessMessage() {
+        // Cria uma mensagem de sucesso temporária
+        const message = document.createElement('div');
+        message.className = 'success-message';
+        message.textContent = 'Reclamação enviada com sucesso!';
+        message.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: #179800;
+          color: white;
+          padding: 16px 24px;
+          border-radius: 8px;
+          font-weight: 600;
+          z-index: 1000;
+          animation: slideIn 0.3s ease-out;
+        `;
+
+        document.body.appendChild(message);
+
+        // Remove a mensagem após 3 segundos
+        setTimeout(() => {
+          message.style.animation = 'slideOut 0.3s ease-in';
+          setTimeout(() => message.remove(), 300);
+        }, 3000);
+      }
+    }
+
+    // Inicializa quando a página carregar
+    document.addEventListener('DOMContentLoaded', () => {
+      new ComplaintManager();
+    });
+
+    // Adiciona estilos CSS para as animações
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      
+      @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+
+</html>
