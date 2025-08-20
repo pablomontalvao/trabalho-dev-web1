@@ -4,48 +4,53 @@
   height: auto;   /* mantém proporção */
 }
 
-/* Container principal */
-.main-content {
-  position: relative;
-  min-height: 100vh;       /* ocupa toda a altura da tela */
-  display: flex;           /* usa flexbox para centralizar conteúdo */
-  flex-direction: column;
-  justify-content: center; /* centraliza verticalmente */
-  align-items: center;     /* centraliza horizontalmente */
-  text-align: center;
-  padding: 40px 20px;      /* espaçamento interno */
-  box-sizing: border-box;  /* garante que padding não aumente tamanho total */
+.navbar {
+  background-color: #3AABDD !important; /* cor do fundo */
 }
 
-/* Imagem de fundo */
-.main-content::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("imagem/pegada-hidrica.jpg");
+
+
+.main-content {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+
+  /* Fundo com imagem + cor */
+  background-color: #80b4d6;
+  background-image: url("../imagem/pegada-hidrica.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 1;  /* transparência suave para o fundo */
-  z-index: -1;    /* fica atrás do conteúdo */
+  background-blend-mode: multiply; /* ou overlay, lighten, etc */
 }
+
 
 /* Título */
 .main-content h1 {
+  color: white;
   text-align: center;       /* mantém o título centralizado */
   padding-top: 50px;
-  font-size: 5.5rem;
+  font-size: 4.5rem;
   margin-bottom: 20px;
 }
 
 .main-content .author {
+  color: white;
   text-align: right;        /* autor alinhado à direita */
   font-size: 2rem;          /* tamanho menor que o título */
   margin-top: 10px;
   width: 100%;              /* garante que ocupe toda a largura da div */
+}
+
+.custom-footer {
+  color: white;
+  background-color: #3AABDD !important; /* cor de fundo */
 }
 
 /* Responsivo */

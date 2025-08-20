@@ -2,8 +2,14 @@
   width: 100px;   /* controla a largura */
   height: auto;   /* mantém proporção */
 }
+
+.navbar {
+  background-color: #3AABDD !important; /* cor do fundo */
+}
+
+
 body {
-  background: linear-gradient(to bottom, #FFFFFF, #3AABDD);
+  background: linear-gradient(to bottom, #FFFFFF, #1570AB);
   background-attachment: fixed; /* Opcional: mantém o degradê fixo ao rolar a página */
   margin: 0;
   height: 100vh;
@@ -59,6 +65,16 @@ body {
   gap: 20px;
 }
 
+.letra-o {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-image: url("../imagem/gotaAzul.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
 .card {
   background: linear-gradient(to bottom, #4ca1af, #1c92d2);
   color: white;
@@ -98,6 +114,12 @@ body {
   text-align: center;
   padding: 40px 20px;      /* espaçamento interno */
   box-sizing: border-box;  /* garante que padding não aumente tamanho total */
+}
+
+
+.custom-footer {
+  color: white;
+  background-color: #3AABDD !important; /* cor de fundo */
 }
 
 
