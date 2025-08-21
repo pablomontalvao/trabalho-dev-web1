@@ -89,23 +89,30 @@ textarea {
 }
 
 /* Buttons */
-.btn {
-  padding: 8px 16px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
+.btn { 
+    padding: 12px 80px; 
+    font-size: 18px;    
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out; 
+}
+
+.btn:hover {
+    background-color: #1d85c8;
 }
 
 .btn--ghost {
-  background: #d9d9d9;
-  color: #fff;
+    background: #d9d9d9;
+    color: #fff;
 }
 
 .btn--primary {
-  background: var(--brand-300);
-  color: #fff;
+    background: var(--brand-300, #3aaaf8);
+    color: #fff;
 }
+
 
 /* Hero */
 .hero {
@@ -143,6 +150,10 @@ textarea {
 .section__title {
   text-align: center;
   color: var(--brand-800);
+  font-size: 36px; /* Aumenta o tamanho da fonte */
+  font-weight: 700; /* Garante que o texto seja "bold" */
+  margin-bottom: 40px; /* Adiciona mais espaço abaixo do título */
+  letter-spacing: -0.5px; /* Ajuste fino no espaçamento das letras */
 }
 
 .rule {
@@ -165,9 +176,40 @@ textarea {
 
 .filters__row {
   margin-top: 12px;
-  display: grid;
-  grid-template-columns: 180px 1fr 220px 320px;
+  display: flex; /* MUDANÇA: Usar Flexbox para alinhar os itens */
+  align-items: center; /* Alinha verticalmente todos os itens */
+  gap: 24px; /* Espaço entre os filtros */
+  flex-wrap: wrap; /* Permite que os filtros quebrem para a linha de baixo em telas menores */
+}
+
+.filters__title-container {
+  display: flex;
+  align-items: center;
   gap: 16px;
+  height: 40px; /* Altura para alinhar com os inputs */
+}
+
+.filters__title {
+  color: var(--brand-800);
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.filters__divider {
+  width: 3px;
+  height: 100%;
+  background-color: var(--brand-800);
+  border-radius: 2px;
+}
+
+#clear-filters-btn {
+  padding: 8px 24px;
+  font-size: 14px;
+  height: 40px;
+  background-color: var(--muted);
+  color: var(--text-light); /* Garante o texto branco como na imagem */
+  margin-left: auto;
 }
 
 .field {
@@ -177,7 +219,9 @@ textarea {
 }
 
 .field--wide {
-  grid-column: span 1;
+  flex-grow: 1; 
+  flex-shrink: 1; 
+  min-width: 150px;
 }
 
 .field--dates .date-range {
@@ -192,8 +236,7 @@ textarea {
 }
 
 .field input,
-.field select,
-.field textarea {
+.field select{
   background: #f0f0f0;
   border: 3px solid var(--brand-800);
   border-radius: 30px;
@@ -209,6 +252,14 @@ textarea {
 }
 
 .field--dates input { height: 34px; }
+
+.no-results {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--brand-800);
+  font-weight: 600;
+  font-size: 18px;
+}
 
 .cards {
   list-style: none;
@@ -226,9 +277,13 @@ textarea {
   border: 2px solid var(--card-border);
   border-radius: 15px;
   padding: 12px 16px;
-  /* Garante que os cards sejam sempre visíveis */
-  visibility: visible;
-  opacity: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .card__status {
@@ -265,6 +320,12 @@ textarea {
   color: var(--ok);
 }
 
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .card__grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -293,17 +354,19 @@ textarea {
 
 /* Form section with gradient panel */
 .form-section {
-  margin: 64px 0;
-  background: linear-gradient(90deg, #1d85c8 0%, #003f67 100%);
-  border: 3px solid #3aaaf8;
-  border-radius: 15px;
-  padding: 24px 0 32px;
-  color: #fff;
+    margin: 64px auto; 
+    max-width: 1300px; 
+    background: #0d5a8e; 
+    border-radius: 25px; 
+    padding: 32px 48px; 
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
 .section__title--light {
-  color: #fff;
-  text-align: center;
+    color: #fff;
+    text-align: center;
+    font-size: 28px; 
 }
 
 .form {
@@ -312,13 +375,15 @@ textarea {
 
 .form__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px 16px; 
 }
 
-.field--span-2 {
-  grid-column: span 2;
-}
+.field--span-6 { grid-column: span 6; }
+.field--span-3 { grid-column: span 3; } 
+.field--span-2 { grid-column: span 2; } 
+.field--span-1 { grid-column: span 1; }
+
 
 .form .field label {
   color: #fff;
@@ -331,6 +396,8 @@ textarea {
   border: none;
   border-radius: 30px;
   height: 45px;
+  padding: 0 20px; 
+  font-size: 16px;
 }
 
 .form .field textarea {
@@ -339,9 +406,9 @@ textarea {
 }
 
 .form__actions {
-  display: grid;
-  place-items: center;
-  margin-top: 16px;
+    display: grid;
+    place-items: center;
+    margin-top: 32px;
 }
 
 .form__note {

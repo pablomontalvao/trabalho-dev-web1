@@ -34,8 +34,13 @@
         <h1 class="section__title">Reclamações recebidas:</h1>
 
         <div class="filters" role="region" aria-label="Filtros">
-          <span class="filters__label">Filtros</span>
+
           <div class="filters__row">
+            <div class="filters__title-container">
+              <h3 class="filters__title">Filtros</h3>
+              <div class="filters__divider"></div>
+            </div>
+
             <div class="field">
               <label for="f-status">Status:</label>
               <select id="f-status">
@@ -45,113 +50,146 @@
                 <option value="resolvido">Resolvido</option>
               </select>
             </div>
+
             <div class="field field--wide">
               <label for="f-endereco">Endereço:</label>
-              <input id="f-endereco" type="text" placeholder="Rua, bairro, cidade" />
+              <input id="f-endereco" type="text" />
             </div>
+
             <div class="field">
               <label for="f-tipo">Tipo:</label>
               <select id="f-tipo">
                 <option value="">Todos</option>
-                <option value="Falta de água">Falta de água</option>
-                <option value="Água suja/com cheiro">Água suja/com cheiro</option>
-                <option value="Vazamento de água limpa">Vazamento de água limpa</option>
-                <option value="Vazamento de esgoto">Vazamento de esgoto</option>
-                <option value="Despejo irregular">Despejo irregular</option>
-                <option value="Outros">Outros</option>
+                <option>Falta de água</option>
+                <option>Água suja/com cheiro</option>
+                <option>Vazamento de água limpa</option>
+                <option>Vazamento de esgoto</option>
+                <option>Despejo irregular</option>
+                <option>Outros</option>
               </select>
             </div>
+          
+
             <div class="field field--dates">
               <label>Data:</label>
               <div class="date-range">
-                <input type="date" id="f-data-inicio" aria-label="Início" />
-                <input type="date" id="f-data-fim" aria-label="Fim" />
+                <div class="date-input-wrapper">
+                  <input type="date" id="f-data-inicio" aria-label="Data início" />
+                </div>
+                <div class="date-input-wrapper">
+                  <input type="date" id="f-data-fim" aria-label="Data fim" />
+                </div>
               </div>
             </div>
+
+            <button id="clear-filters-btn" class="btn btn--ghost" type="button">Limpar Filtros</button>
           </div>
+
+          <ul class="cards" id="claims-list" aria-live="polite">
+            <li class="card" data-id="1" data-status="recebido" data-tipo="Iluminação"
+              data-endereco="Rua das Flores, 123 - Centro" data-data="12/08/2025" data-hora="14:30"
+              data-descricao="Poste sem iluminação em frente ao número 123." data-numero="123"
+              data-complemento="Centro">
+              <div class="card__status">
+                <span class="status__label">Status</span>
+                <img class="status__icon" src="../img/checkRecebido.png" alt="Recebido" />
+                <span class="status__text status--recebido">Recebido</span>
+              </div>
+              <div class="card__body">
+                <div class="card__grid">
+                  <div class="card__col"><span class="label">Tipo:</span><span class="value">Iluminação</span></div>
+                  <div class="card__col"><span class="label">Endereço:</span><span class="value">Rua das Flores, 123 -
+                      Centro</span></div>
+                  <div class="card__col"><span class="label">Data:</span><span class="value">12/08/2025</span></div>
+                  <div class="card__col"><span class="label">Hora:</span><span class="value">14:30</span></div>
+                  <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Poste
+                      sem iluminação em frente ao número 123.</span></div>
+                </div>
+                <div class="card__actions">
+                  <button class="btn btn--primary btn--small" onclick="viewDetails(1)">Ver Detalhes</button>
+                  <button class="btn btn--secondary btn--small" onclick="updateStatus(1)">Atualizar Status</button>
+                </div>
+              </div>
+            </li>
+
+            <li class="card" data-id="2" data-status="andamento" data-tipo="Lixo"
+              data-endereco="Av. Brasil, 456 - Jardim" data-data="10/08/2025" data-hora="09:15"
+              data-descricao="Acúmulo de lixo não recolhido há três dias." data-numero="456" data-complemento="Jardim">
+              <div class="card__status">
+                <span class="status__label">Status</span>
+                <img class="status__icon" src="../img/checkEmAndamento.png" alt="Em andamento" />
+                <span class="status__text status--andamento">Em andamento</span>
+              </div>
+              <div class="card__body">
+                <div class="card__grid">
+                  <div class="card__col"><span class="label">Tipo:</span><span class="value">Lixo</span></div>
+                  <div class="card__col"><span class="label">Endereço:</span><span class="value">Av. Brasil, 456 -
+                      Jardim</span></div>
+                  <div class="card__col"><span class="label">Data:</span><span class="value">10/08/2025</span></div>
+                  <div class="card__col"><span class="label">Hora:</span><span class="value">09:15</span></div>
+                  <div class="card__col card__col--full"><span class="label">Descrição:</span><span
+                      class="value">Acúmulo de lixo não recolhido há três dias.</span></div>
+                </div>
+                <div class="card__actions">
+                  <button class="btn btn--primary btn--small" onclick="viewDetails(2)">Ver Detalhes</button>
+                  <button class="btn btn--secondary btn--small" onclick="updateStatus(2)">Atualizar Status</button>
+                </div>
+              </div>
+            </li>
+
+            <li class="card" data-id="3" data-status="resolvido" data-tipo="Buraco na via"
+              data-endereco="Rua A, 789 - Industrial" data-data="03/08/2025" data-hora="16:45"
+              data-descricao="Buraco grande próximo à esquina, já tapado." data-numero="789"
+              data-complemento="Industrial">
+              <div class="card__status">
+                <span class="status__label">Status</span>
+                <img class="status__icon" src="../img/checkResolvido.png" alt="Resolvido" />
+                <span class="status__text status--resolvido">Resolvido</span>
+              </div>
+              <div class="card__body">
+                <div class="card__grid">
+                  <div class="card__col"><span class="label">Tipo:</span><span class="value">Buraco na via</span></div>
+                  <div class="card__col"><span class="label">Endereço:</span><span class="value">Rua A, 789 -
+                      Industrial</span></div>
+                  <div class="card__col"><span class="label">Data:</span><span class="value">03/08/2025</span></div>
+                  <div class="card__col"><span class="label">Hora:</span><span class="value">16:45</span></div>
+                  <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Buraco
+                      grande próximo à esquina, já tapado.</span></div>
+                </div>
+                <div class="card__actions">
+                  <button class="btn btn--primary btn--small" onclick="viewDetails(3)">Ver Detalhes</button>
+                  <button class="btn btn--secondary btn--small" onclick="updateStatus(3)">Atualizar Status</button>
+                </div>
+              </div>
+            </li>
+
+            <li class="card" data-id="4" data-status="andamento" data-tipo="Água/Esgoto"
+              data-endereco="Rua B, 55 - Centro" data-data="01/08/2025" data-hora="11:20"
+              data-descricao="Vazamento visível próximo à calçada." data-numero="55" data-complemento="Centro">
+              <div class="card__status">
+                <span class="status__label">Status</span>
+                <img class="status__icon" src="../img/checkEmAndamento.png" alt="Em andamento" />
+                <span class="status__text status--andamento">Em andamento</span>
+              </div>
+              <div class="card__body">
+                <div class="card__grid">
+                  <div class="card__col"><span class="label">Tipo:</span><span class="value">Água/Esgoto</span></div>
+                  <div class="card__col"><span class="label">Endereço:</span><span class="value">Rua B, 55 -
+                      Centro</span></div>
+                  <div class="card__col"><span class="label">Data:</span><span class="value">01/08/2025</span></div>
+                  <div class="card__col"><span class="label">Hora:</span><span class="value">11:20</span></div>
+                  <div class="card__col card__col--full"><span class="label">Descrição:</span><span
+                      class="value">Vazamento visível próximo à calçada.</span></div>
+                </div>
+                <div class="card__actions">
+                  <button class="btn btn--primary btn--small" onclick="viewDetails(4)">Ver Detalhes</button>
+                  <button class="btn btn--secondary btn--small" onclick="updateStatus(4)">Atualizar Status</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <p id="no-results-message" class="no-results" style="display: none;">Nenhuma reclamação encontrada com os filtros aplicados.</p>
         </div>
-
-        <ul class="cards" id="claims-list">
-          <li class="card" data-id="1" data-status="recebido" data-tipo="Iluminação" data-endereco="Rua das Flores, 123 - Centro" data-data="12/08/2025" data-hora="14:30" data-descricao="Poste sem iluminação em frente ao número 123." data-numero="123" data-complemento="Centro">
-            <div class="card__status">
-              <span class="status__label">Status</span>
-              <img class="status__icon" src="../img/checkRecebido.png" alt="Recebido" />
-              <span class="status__text status--recebido">Recebido</span>
-            </div>
-            <div class="card__body">
-              <div class="card__grid">
-                <div class="card__col"><span class="label">Tipo:</span><span class="value">Iluminação</span></div>
-                <div class="card__col"><span class="label">Endereço:</span><span class="value">Rua das Flores, 123 - Centro</span></div>
-                <div class="card__col"><span class="label">Data:</span><span class="value">12/08/2025</span></div>
-                <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Poste sem iluminação em frente ao número 123.</span></div>
-              </div>
-              <div class="card__actions">
-                <button class="btn btn--primary btn--small" onclick="viewDetails(1)">Ver Detalhes</button>
-                <button class="btn btn--secondary btn--small" onclick="updateStatus(1)">Atualizar Status</button>
-              </div>
-            </div>
-          </li>
-
-          <li class="card" data-id="2" data-status="andamento" data-tipo="Lixo" data-endereco="Av. Brasil, 456 - Jardim" data-data="10/08/2025" data-hora="09:15" data-descricao="Acúmulo de lixo não recolhido há três dias." data-numero="456" data-complemento="Jardim">
-            <div class="card__status">
-              <span class="status__label">Status</span>
-              <img class="status__icon" src="../img/checkEmAndamento.png" alt="Em andamento" />
-              <span class="status__text status--andamento">Em andamento</span>
-            </div>
-            <div class="card__body">
-              <div class="card__grid">
-                <div class="card__col"><span class="label">Tipo:</span><span class="value">Lixo</span></div>
-                <div class="card__col"><span class="label">Endereço:</span><span class="value">Av. Brasil, 456 - Jardim</span></div>
-                <div class="card__col"><span class="label">Data:</span><span class="value">10/08/2025</span></div>
-                <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Acúmulo de lixo não recolhido há três dias.</span></div>
-              </div>
-              <div class="card__actions">
-                <button class="btn btn--primary btn--small" onclick="viewDetails(2)">Ver Detalhes</button>
-                <button class="btn btn--secondary btn--small" onclick="updateStatus(2)">Atualizar Status</button>
-              </div>
-            </div>
-          </li>
-
-          <li class="card" data-id="3" data-status="resolvido" data-tipo="Buraco na via" data-endereco="Rua A, 789 - Industrial" data-data="03/08/2025" data-hora="16:45" data-descricao="Buraco grande próximo à esquina, já tapado." data-numero="789" data-complemento="Industrial">
-            <div class="card__status">
-              <span class="status__label">Status</span>
-              <img class="status__icon" src="../img/checkResolvido.png" alt="Resolvido" />
-              <span class="status__text status--resolvido">Resolvido</span>
-            </div>
-            <div class="card__body">
-              <div class="card__grid">
-                <div class="card__col"><span class="label">Tipo:</span><span class="value">Buraco na via</span></div>
-                <div class="card__col"><span class="label">Endereço:</span><span class="value">Rua A, 789 - Industrial</span></div>
-                <div class="card__col"><span class="label">Data:</span><span class="value">03/08/2025</span></div>
-                <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Buraco grande próximo à esquina, já tapado.</span></div>
-              </div>
-              <div class="card__actions">
-                <button class="btn btn--primary btn--small" onclick="viewDetails(3)">Ver Detalhes</button>
-                <button class="btn btn--secondary btn--small" onclick="updateStatus(3)">Atualizar Status</button>
-              </div>
-            </div>
-          </li>
-
-          <li class="card" data-id="4" data-status="andamento" data-tipo="Água/Esgoto" data-endereco="Rua B, 55 - Centro" data-data="01/08/2025" data-hora="11:20" data-descricao="Vazamento visível próximo à calçada." data-numero="55" data-complemento="Centro">
-            <div class="card__status">
-              <span class="status__label">Status</span>
-              <img class="status__icon" src="../img/checkEmAndamento.png" alt="Em andamento" />
-              <span class="status__text status--andamento">Em andamento</span>
-            </div>
-            <div class="card__body">
-              <div class="card__grid">
-                <div class="card__col"><span class="label">Tipo:</span><span class="value">Água/Esgoto</span></div>
-                <div class="card__col"><span class="label">Endereço:</span><span class="value">Rua B, 55 - Centro</span></div>
-                <div class="card__col"><span class="label">Data:</span><span class="value">01/08/2025</span></div>
-                <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Vazamento visível próximo à calçada.</span></div>
-              </div>
-              <div class="card__actions">
-                <button class="btn btn--primary btn--small" onclick="viewDetails(4)">Ver Detalhes</button>
-                <button class="btn btn--secondary btn--small" onclick="updateStatus(4)">Atualizar Status</button>
-              </div>
-            </div>
-          </li>
-        </ul>
       </div>
     </section>
   </main>
@@ -188,7 +226,8 @@
           </div>
           <div class="field">
             <label for="status-notes">Observações (opcional):</label>
-            <textarea id="status-notes" name="status-notes" rows="3" placeholder="Adicione observações sobre a mudança de status..."></textarea>
+            <textarea id="status-notes" name="status-notes" rows="3"
+              placeholder="Adicione observações sobre a mudança de status..."></textarea>
           </div>
           <div class="form__actions">
             <button type="button" class="btn btn--ghost" onclick="closeStatusModal()">Cancelar</button>
@@ -222,13 +261,42 @@
         const statusFilter = document.getElementById('f-status');
         const enderecoFilter = document.getElementById('f-endereco');
         const tipoFilter = document.getElementById('f-tipo');
+        // Mude os seletores para os IDs que adicionamos
         const dataInicioFilter = document.getElementById('f-data-inicio');
         const dataFimFilter = document.getElementById('f-data-fim');
+        const clearFiltersBtn = document.getElementById('clear-filters-btn'); // Pega o botão
 
         [statusFilter, enderecoFilter, tipoFilter, dataInicioFilter, dataFimFilter].forEach(filter => {
           if (filter) {
             filter.addEventListener('input', () => this.applyFilters());
           }
+        });
+
+        // Adiciona o evento de clique no botão
+        clearFiltersBtn.addEventListener('click', () => this.clearFilters());
+
+        this.showAllCards();
+      }
+
+      clearFilters() {
+        // Limpa o valor de cada campo do formulário de filtros
+        document.getElementById('f-status').value = '';
+        document.getElementById('f-endereco').value = '';
+        document.getElementById('f-tipo').value = '';
+        document.getElementById('f-data-inicio').value = '';
+        document.getElementById('f-data-fim').value = '';
+
+        // Esconde a mensagem de "nenhum resultado"
+        document.getElementById('no-results-message').style.display = 'none';
+
+        // Reexibe todos os cards
+        this.showAllCards();
+      }
+
+      showAllCards() {
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((card) => {
+          card.style.display = 'grid';
         });
       }
 
@@ -237,7 +305,7 @@
         // Carrega as reclamações existentes dos cards HTML
         const existingCards = document.querySelectorAll('.card');
         console.log('Cards encontrados:', existingCards.length);
-        
+
         existingCards.forEach((card, index) => {
           const id = parseInt(card.dataset.id);
           const status = card.dataset.status;
@@ -260,7 +328,7 @@
             numero,
             complemento
           });
-          
+
           console.log(`Card ${index + 1} carregado: ID ${id}, Status: ${status}, Tipo: ${tipo}`);
         });
       }
@@ -288,38 +356,66 @@
         const dataFimFilter = document.getElementById('f-data-fim').value;
 
         const cards = document.querySelectorAll('.card');
-        
+        let visibleCardsCount = 0;
+
+        // Parse das datas do filtro fora do loop para melhor performance
+        const inicioDate = dataInicioFilter ? new Date(`${dataInicioFilter}T00:00:00`) : null;
+        const fimDate = dataFimFilter ? new Date(`${dataFimFilter}T00:00:00`) : null;
+
         cards.forEach(card => {
           let show = true;
           const status = card.dataset.status;
-          const tipo = card.dataset.tipo;
-          const endereco = card.dataset.endereco.toLowerCase();
-          const data = card.dataset.data;
+          const tipo = card.querySelector('.card__col:first-child .value').textContent;
+          const endereco = card.querySelector('.card__col:nth-child(2) .value').textContent.toLowerCase();
+          const dataTexto = card.querySelector('.card__col:nth-child(3) .value').textContent;
 
           // Filtro por status
-          if (statusFilter && status !== statusFilter) show = false;
+          if (statusFilter && status !== statusFilter) {
+            show = false;
+          }
           
           // Filtro por endereço
-          if (enderecoFilter && !endereco.includes(enderecoFilter)) show = false;
+          if (enderecoFilter && !endereco.includes(enderecoFilter)) {
+            show = false;
+          }
           
           // Filtro por tipo
-          if (tipoFilter && tipo !== tipoFilter) show = false;
+          if (tipoFilter && tipo !== tipoFilter) {
+            show = false;
+          }
           
-          // Filtro por data
-          if (dataInicioFilter || dataFimFilter) {
-            const cardDate = new Date(data.split('/').reverse().join('-'));
-            if (dataInicioFilter) {
-              const inicioDate = new Date(dataInicioFilter);
-              if (cardDate < inicioDate) show = false;
+          // --- LÓGICA DE DATA CORRIGIDA ---
+          // Só executa o filtro de data se o card ainda estiver visível
+          if (show && (inicioDate || fimDate)) {
+            // Converte a data do card (DD/MM/AAAA) para um objeto Date confiável
+            const [dia, mes, ano] = dataTexto.split('/');
+            const cardDate = new Date(ano, mes - 1, dia); // Mês é 0-indexado (0-11)
+
+            // Compara com a data de início
+            if (inicioDate && cardDate < inicioDate) {
+              show = false;
             }
-            if (dataFimFilter) {
-              const fimDate = new Date(dataFimFilter);
-              if (cardDate > fimDate) show = false;
+
+            // Compara com a data de fim (de forma inclusiva)
+            if (fimDate && cardDate > fimDate) {
+              show = false;
             }
           }
 
           card.style.display = show ? 'grid' : 'none';
+          if (show) {
+            visibleCardsCount++;
+          }
         });
+        
+    
+
+        const noResultsMessage = document.getElementById('no-results-message');
+        if (visibleCardsCount === 0) {
+          noResultsMessage.style.display = 'block';
+        } else {
+          noResultsMessage.style.display = 'none';
+        }
       }
 
       updateComplaintStatus(id, newStatus, notes = '') {
@@ -328,13 +424,13 @@
           complaint.status = newStatus;
           complaint.notes = notes;
           complaint.lastUpdate = new Date().toLocaleString('pt-BR');
-          
+
           // Atualiza o card visual
           this.updateCardStatus(id, newStatus);
-          
+
           // Aqui você pode implementar a sincronização com o banco de dados
           console.log(`Status atualizado para ID ${id}: ${newStatus}`);
-          
+
           return true;
         }
         return false;
@@ -345,15 +441,15 @@
         if (card) {
           // Atualiza o dataset
           card.dataset.status = newStatus;
-          
+
           // Atualiza o ícone e texto
           const statusIcon = card.querySelector('.status__icon');
           const statusText = card.querySelector('.status__text');
-          
+
           if (statusIcon && statusText) {
             // Remove classes antigas
             statusText.className = 'status__text';
-            
+
             // Atualiza ícone e texto baseado no novo status
             switch (newStatus) {
               case 'recebido':
@@ -386,7 +482,7 @@
       submitStatusUpdate() {
         console.log('submitStatusUpdate chamado na classe');
         console.log('this.currentComplaintId:', this.currentComplaintId);
-        
+
         if (!this.currentComplaintId) {
           console.error('Nenhuma reclamação selecionada para atualização');
           showSuccessMessage('Erro: Nenhuma reclamação selecionada', 'error');
@@ -395,12 +491,12 @@
 
         const newStatusElement = document.getElementById('new-status');
         const notesElement = document.getElementById('status-notes');
-        
+
         if (!newStatusElement) {
           console.error('Elemento new-status não encontrado');
           return;
         }
-        
+
         if (!notesElement) {
           console.error('Elemento status-notes não encontrado');
           return;
@@ -408,14 +504,14 @@
 
         const newStatus = newStatusElement.value;
         const notes = notesElement.value;
-        
+
         console.log('Novo status:', newStatus);
         console.log('Observações:', notes);
-        
+
         if (this.updateComplaintStatus(this.currentComplaintId, newStatus, notes)) {
           showSuccessMessage(`Status atualizado para: ${newStatus}`);
           closeStatusModal();
-          
+
           // Se o modal de detalhes estiver aberto, atualiza ele também
           const detailsModal = document.getElementById('details-modal');
           if (detailsModal && detailsModal.style.display === 'block') {
@@ -448,7 +544,7 @@
       const modalTitle = document.getElementById('modal-title');
 
       modalTitle.textContent = `Reclamação #${complaint.id}`;
-      
+
       modalBody.innerHTML = `
         <div class="details-grid">
           <div class="detail-item">
@@ -509,10 +605,10 @@
       console.log('updateStatus chamado com ID:', id);
       currentComplaintId = id;
       adminManager.currentComplaintId = id; // Atualiza também na classe
-      
+
       const complaint = adminManager.getComplaintDetails(id);
       console.log('Reclamação encontrada:', complaint);
-      
+
       if (complaint) {
         const statusSelect = document.getElementById('new-status');
         if (statusSelect) {
@@ -521,10 +617,10 @@
         } else {
           console.error('Elemento new-status não encontrado');
         }
-        
+
         const statusModal = document.getElementById('status-modal');
         const detailsModal = document.getElementById('details-modal');
-        
+
         if (statusModal && detailsModal) {
           statusModal.style.display = 'block';
           detailsModal.style.display = 'none';
@@ -548,12 +644,12 @@
     function closeStatusModal() {
       const statusModal = document.getElementById('status-modal');
       const form = document.getElementById('status-form');
-      
+
       if (statusModal) {
         statusModal.style.display = 'none';
         console.log('Modal de status fechado');
       }
-      
+
       if (form) {
         form.reset();
         console.log('Formulário resetado');
@@ -564,7 +660,7 @@
       console.log('submitStatusUpdate chamado');
       console.log('currentComplaintId:', currentComplaintId);
       console.log('adminManager.currentComplaintId:', adminManager.currentComplaintId);
-      
+
       // Chama o método da classe AdminComplaintManager
       adminManager.submitStatusUpdate();
     }
@@ -573,10 +669,10 @@
       const successMsg = document.createElement('div');
       successMsg.className = 'success-message';
       successMsg.textContent = message;
-      
+
       const bgColor = type === 'error' ? '#d32f2f' : '#179800';
       const icon = type === 'error' ? '❌' : '✅';
-      
+
       successMsg.style.cssText = `
         position: fixed;
         top: 20px;
@@ -593,7 +689,7 @@
         gap: 8px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       `;
-      
+
       successMsg.innerHTML = `${icon} ${message}`;
 
       document.body.appendChild(successMsg);
@@ -605,10 +701,10 @@
     }
 
     // Fechar modais ao clicar fora
-    window.onclick = function(event) {
+    window.onclick = function (event) {
       const detailsModal = document.getElementById('details-modal');
       const statusModal = document.getElementById('status-modal');
-      
+
       if (event.target === detailsModal) {
         closeModal();
       }
@@ -620,26 +716,26 @@
     // Inicializa quando a página carregar
     document.addEventListener('DOMContentLoaded', () => {
       console.log('DOM carregado, inicializando sistema...');
-      
+
       // Verifica se todos os elementos necessários estão presentes
       const requiredElements = [
         'details-modal',
-        'status-modal', 
+        'status-modal',
         'status-form',
         'new-status',
         'status-notes'
       ];
-      
+
       const missingElements = requiredElements.filter(id => !document.getElementById(id));
-      
+
       if (missingElements.length > 0) {
         console.error('Elementos faltando:', missingElements);
         alert('Erro: Alguns elementos necessários não foram encontrados. Verifique o console para mais detalhes.');
         return;
       }
-      
+
       console.log('Todos os elementos necessários encontrados');
-      
+
       try {
         adminManager = new AdminComplaintManager();
         console.log('Sistema inicializado com sucesso');

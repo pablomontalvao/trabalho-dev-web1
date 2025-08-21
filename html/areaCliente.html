@@ -47,8 +47,13 @@
         <h2 class="section__title">Minhas reclamações:</h2>
 
         <div class="filters" role="region" aria-label="Filtros">
-          <span class="filters__label">Filtros</span>
+
           <div class="filters__row">
+            <div class="filters__title-container">
+              <h3 class="filters__title">Filtros</h3>
+              <div class="filters__divider"></div>
+            </div>
+
             <div class="field">
               <label for="f-status">Status:</label>
               <select id="f-status">
@@ -58,10 +63,12 @@
                 <option value="resolvido">Resolvido</option>
               </select>
             </div>
+
             <div class="field field--wide">
               <label for="f-endereco">Endereço:</label>
-              <input id="f-endereco" type="text" placeholder="Rua, bairro, cidade" />
+              <input id="f-endereco" type="text" />
             </div>
+
             <div class="field">
               <label for="f-tipo">Tipo:</label>
               <select id="f-tipo">
@@ -74,67 +81,85 @@
                 <option>Outros</option>
               </select>
             </div>
+
             <div class="field field--dates">
               <label>Data:</label>
               <div class="date-range">
-                <input type="date" aria-label="Data início" />
-                <input type="date" aria-label="Data fim" />
+                <div class="date-input-wrapper">
+                  <input type="date" id="f-data-inicio" aria-label="Data início" />
+                </div>
+                <div class="date-input-wrapper">
+                  <input type="date" id="f-data-fim" aria-label="Data fim" />
+                </div>
               </div>
             </div>
+
+            <button id="clear-filters-btn" class="btn btn--ghost" type="button">Limpar Filtros</button>
           </div>
+
+          <ul class="cards" id="claims-list" aria-live="polite">
+            <li class="card" data-id="1" data-status="recebido">
+              <div class="card__status">
+                <span class="status__label">Status</span>
+                <img class="status__icon" src="../img/checkRecebido.png" alt="Ícone status recebido" />
+                <span class="status__text status--recebido">Recebido</span>
+              </div>
+              <div class="card__body">
+                <div class="card__grid">
+                  <div class="card__col"><span class="label">Tipo:</span><span class="value">Iluminação</span></div>
+                  <div class="card__col"><span class="label">Endereço:</span><span class="value">Rua das Flores, 123 -
+                      Centro</span></div>
+                  <div class="card__col"><span class="label">Data:</span><span class="value">12/08/2025</span></div>
+                  <div class="card__col"><span class="label">Hora:</span><span class="value">14:30</span></div>
+                  <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Poste
+                      sem iluminação em frente ao número 123.</span></div>
+                </div>
+              </div>
+            </li>
+
+            <li class="card" data-id="2" data-status="andamento">
+              <div class="card__status">
+                <span class="status__label">Status</span>
+                <img class="status__icon" src="../img/checkEmAndamento.png" alt="Ícone status em andamento" />
+                <span class="status__text status--andamento">Em andamento</span>
+              </div>
+              <div class="card__body">
+                <div class="card__grid">
+                  <div class="card__col"><span class="label">Tipo:</span><span class="value">Lixo</span></div>
+                  <div class="card__col"><span class="label">Endereço:</span><span class="value">Av. Brasil, 456 -
+                      Jardim</span></div>
+                  <div class="card__col"><span class="label">Data:</span><span class="value">10/08/2025</span></div>
+                  <div class="card__col"><span class="label">Hora:</span><span class="value">09:15</span></div>
+                  <div class="card__col card__col--full"><span class="label">Descrição:</span><span
+                      class="value">Acúmulo de lixo não recolhido há três dias.</span></div>
+                </div>
+              </div>
+            </li>
+
+            <li class="card" data-id="3" data-status="resolvido">
+              <div class="card__status">
+                <span class="status__label">Status</span>
+                <img class="status__icon" src="../img/checkResolvido.png" alt="Ícone status resolvido" />
+                <span class="status__text status--resolvido">Resolvido</span>
+              </div>
+              <div class="card__body">
+                <div class="card__grid">
+                  <div class="card__col"><span class="label">Tipo:</span><span class="value">Buraco na via</span></div>
+                  <div class="card__col"><span class="label">Endereço:</span><span class="value">Rua A, 789 -
+                      Industrial</span></div>
+                  <div class="card__col"><span class="label">Data:</span><span class="value">03/08/2025</span></div>
+                  <div class="card__col"><span class="label">Hora:</span><span class="value">16:45</span></div>
+                  <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Buraco
+                      grande próximo à esquina, já tapado.</span></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <p id="no-results-message" class="no-results" style="display: none;">Nenhuma reclamação encontrada com os
+            filtros aplicados.</p>
+
+          <div class="rule rule--bottom"></div>
         </div>
-
-        <ul class="cards" id="claims-list" aria-live="polite">
-          <li class="card" data-id="1" data-status="recebido">
-            <div class="card__status">
-              <span class="status__label">Status</span>
-              <img class="status__icon" src="../img/checkRecebido.png" alt="Ícone status recebido" />
-              <span class="status__text status--recebido">Recebido</span>
-            </div>
-            <div class="card__body">
-              <div class="card__grid">
-                <div class="card__col"><span class="label">Tipo:</span><span class="value">Iluminação</span></div>
-                <div class="card__col"><span class="label">Endereço:</span><span class="value">Rua das Flores, 123 - Centro</span></div>
-                <div class="card__col"><span class="label">Data:</span><span class="value">12/08/2025</span></div>
-                <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Poste sem iluminação em frente ao número 123.</span></div>
-              </div>
-            </div>
-          </li>
-
-          <li class="card" data-id="2" data-status="andamento">
-            <div class="card__status">
-              <span class="status__label">Status</span>
-              <img class="status__icon" src="../img/checkEmAndamento.png" alt="Ícone status em andamento" />
-              <span class="status__text status--andamento">Em andamento</span>
-            </div>
-            <div class="card__body">
-              <div class="card__grid">
-                <div class="card__col"><span class="label">Tipo:</span><span class="value">Lixo</span></div>
-                <div class="card__col"><span class="label">Endereço:</span><span class="value">Av. Brasil, 456 - Jardim</span></div>
-                <div class="card__col"><span class="label">Data:</span><span class="value">10/08/2025</span></div>
-                <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Acúmulo de lixo não recolhido há três dias.</span></div>
-              </div>
-            </div>
-          </li>
-
-          <li class="card" data-id="3" data-status="resolvido">
-            <div class="card__status">
-              <span class="status__label">Status</span>
-              <img class="status__icon" src="../img/checkResolvido.png" alt="Ícone status resolvido" />
-              <span class="status__text status--resolvido">Resolvido</span>
-            </div>
-            <div class="card__body">
-              <div class="card__grid">
-                <div class="card__col"><span class="label">Tipo:</span><span class="value">Buraco na via</span></div>
-                <div class="card__col"><span class="label">Endereço:</span><span class="value">Rua A, 789 - Industrial</span></div>
-                <div class="card__col"><span class="label">Data:</span><span class="value">03/08/2025</span></div>
-                <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">Buraco grande próximo à esquina, já tapado.</span></div>
-              </div>
-            </div>
-          </li>
-        </ul>
-        <div class="rule rule--bottom"></div>
-      </div>
     </section>
 
     <section id="formulario" class="form-section" aria-labelledby="form-title">
@@ -142,32 +167,32 @@
         <h2 id="form-title" class="section__title section__title--light">Formulário de Reclamações</h2>
         <form class="form" id="complaint-form" action="#" method="post">
           <div class="form__grid">
-            <div class="field field--span-2">
+            <div class="field field--span-3">
               <label for="endereco">Endereço:</label>
               <input id="endereco" name="endereco" type="text" required />
             </div>
 
-            <div class="field">
+            <div class="field field--span-2">
               <label for="numero">Número:</label>
               <input id="numero" name="numero" type="text" inputmode="numeric" />
             </div>
 
-            <div class="field">
+            <div class="field field--span-1">
               <label for="complemento">Complemento:</label>
               <input id="complemento" name="complemento" type="text" />
             </div>
 
-            <div class="field">
+            <div class="field field--span-3">
               <label for="data">Data:</label>
               <input id="data" name="data" type="date" required />
             </div>
 
-            <div class="field">
+            <div class="field field--span-3">
               <label for="hora">Hora:</label>
               <input id="hora" name="hora" type="time" required />
             </div>
 
-            <div class="field">
+            <div class="field field--span-6">
               <label for="tipo">Qual o tipo de problema?</label>
               <select id="tipo" name="tipo" required>
                 <option value="" disabled selected>Selecione</option>
@@ -180,16 +205,17 @@
               </select>
             </div>
 
-            <div class="field field--span-2">
+            <div class="field field--span-6">
               <label for="descricao">Descrição</label>
-              <textarea id="descricao" name="descricao" rows="5" required></textarea>
+              <textarea id="descricao" name="descricao" rows="5"></textarea>
             </div>
           </div>
 
           <div class="form__actions">
             <button type="submit" class="btn btn--primary">Enviar</button>
           </div>
-          <p class="form__note">Ao preencher o formulário de reclamação abaixo, você nos ajuda a identificar e resolver rapidamente qualquer interrupção ou problema.</p>
+          <p class="form__note">Ao preencher o formulário de reclamação abaixo, você nos ajuda a identificar e resolver
+            rapidamente qualquer interrupção ou problema.</p>
         </form>
       </div>
     </section>
@@ -224,16 +250,35 @@
         const statusFilter = document.getElementById('f-status');
         const enderecoFilter = document.getElementById('f-endereco');
         const tipoFilter = document.getElementById('f-tipo');
-        const dataInicioFilter = document.querySelector('input[type="date"]:first-of-type');
-        const dataFimFilter = document.querySelector('input[type="date"]:last-of-type');
+        // Mude os seletores para os IDs que adicionamos
+        const dataInicioFilter = document.getElementById('f-data-inicio');
+        const dataFimFilter = document.getElementById('f-data-fim');
+        const clearFiltersBtn = document.getElementById('clear-filters-btn'); // Pega o botão
 
         [statusFilter, enderecoFilter, tipoFilter, dataInicioFilter, dataFimFilter].forEach(filter => {
           if (filter) {
             filter.addEventListener('input', () => this.applyFilters());
           }
         });
-        
-        // Garante que todos os cards sejam visíveis inicialmente
+
+        // Adiciona o evento de clique no botão
+        clearFiltersBtn.addEventListener('click', () => this.clearFilters());
+
+        this.showAllCards();
+      }
+
+      clearFilters() {
+        // Limpa o valor de cada campo do formulário de filtros
+        document.getElementById('f-status').value = '';
+        document.getElementById('f-endereco').value = '';
+        document.getElementById('f-tipo').value = '';
+        document.getElementById('f-data-inicio').value = '';
+        document.getElementById('f-data-fim').value = '';
+
+        // Esconde a mensagem de "nenhum resultado"
+        document.getElementById('no-results-message').style.display = 'none';
+
+        // Reexibe todos os cards
         this.showAllCards();
       }
 
@@ -241,7 +286,7 @@
         console.log('Mostrando todos os cards...');
         const cards = document.querySelectorAll('.card');
         console.log('Total de cards encontrados:', cards.length);
-        
+
         cards.forEach((card, index) => {
           card.style.display = 'grid';
           console.log(`Card ${index + 1} configurado como visível`);
@@ -253,13 +298,14 @@
         // Carrega as reclamações existentes dos cards HTML
         const existingCards = document.querySelectorAll('.card');
         console.log('Cards encontrados:', existingCards.length);
-        
+
         existingCards.forEach((card, index) => {
           const id = parseInt(card.dataset.id);
           const status = card.dataset.status;
           const tipo = card.querySelector('.card__col:first-child .value').textContent;
           const endereco = card.querySelector('.card__col:nth-child(2) .value').textContent;
           const data = card.querySelector('.card__col:nth-child(3) .value').textContent;
+          const hora = (card.querySelector('.card__col:nth-child(4) .value') || { textContent: '' }).textContent;
           const descricao = card.querySelector('.card__col--full .value').textContent;
 
           this.complaints.push({
@@ -268,19 +314,19 @@
             tipo,
             endereco,
             data,
+            hora,
             descricao,
             numero: '',
             complemento: '',
-            hora: ''
           });
-          
+
           console.log(`Card ${index + 1} carregado: ID ${id}, Status: ${status}, Tipo: ${tipo}`);
         });
       }
 
       submitComplaint() {
         const formData = new FormData(document.getElementById('complaint-form'));
-        
+
         const complaint = {
           id: this.nextId++,
           status: 'recebido',
@@ -297,7 +343,7 @@
         this.addComplaintCard(complaint);
         this.resetForm();
         this.showSuccessMessage();
-        
+
         // Rola para a seção de reclamações
         document.querySelector('.claims').scrollIntoView({ behavior: 'smooth' });
       }
@@ -309,7 +355,7 @@
         card.dataset.id = complaint.id;
         card.dataset.status = complaint.status;
 
-        const enderecoCompleto = complaint.complemento 
+        const enderecoCompleto = complaint.complemento
           ? `${complaint.endereco}, ${complaint.numero} - ${complaint.complemento}`
           : `${complaint.endereco}, ${complaint.numero}`;
 
@@ -324,6 +370,7 @@
               <div class="card__col"><span class="label">Tipo:</span><span class="value">${complaint.tipo}</span></div>
               <div class="card__col"><span class="label">Endereço:</span><span class="value">${enderecoCompleto}</span></div>
               <div class="card__col"><span class="label">Data:</span><span class="value">${complaint.data}</span></div>
+              <div class="card__col"><span class="label">Hora:</span><span class="value">${complaint.hora || ''}</span></div>
               <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">${complaint.descricao}</span></div>
             </div>
           </div>
@@ -333,43 +380,74 @@
         cardsList.insertBefore(card, cardsList.firstChild);
       }
 
+      // COLE ESTA VERSÃO CORRIGIDA NO LUGAR DA SUA FUNÇÃO applyFilters
       applyFilters() {
         const statusFilter = document.getElementById('f-status').value;
         const enderecoFilter = document.getElementById('f-endereco').value.toLowerCase();
         const tipoFilter = document.getElementById('f-tipo').value;
-        const dataInicioFilter = document.querySelector('input[type="date"]:first-of-type').value;
-        const dataFimFilter = document.querySelector('input[type="date"]:last-of-type').value;
+        const dataInicioFilter = document.getElementById('f-data-inicio').value;
+        const dataFimFilter = document.getElementById('f-data-fim').value;
 
         const cards = document.querySelectorAll('.card');
-        
+        let visibleCardsCount = 0;
+
+        // Parse das datas do filtro fora do loop para melhor performance
+        const inicioDate = dataInicioFilter ? new Date(`${dataInicioFilter}T00:00:00`) : null;
+        const fimDate = dataFimFilter ? new Date(`${dataFimFilter}T00:00:00`) : null;
+
         cards.forEach(card => {
           let show = true;
           const status = card.dataset.status;
           const tipo = card.querySelector('.card__col:first-child .value').textContent;
           const endereco = card.querySelector('.card__col:nth-child(2) .value').textContent.toLowerCase();
-          const data = card.querySelector('.card__col:nth-child(3) .value').textContent;
+          const dataTexto = card.querySelector('.card__col:nth-child(3) .value').textContent;
 
           // Filtro por status
-          if (statusFilter && status !== statusFilter) show = false;
+          if (statusFilter && status !== statusFilter) {
+            show = false;
+          }
           
           // Filtro por endereço
-          if (enderecoFilter && !endereco.includes(enderecoFilter)) show = false;
+          if (enderecoFilter && !endereco.includes(enderecoFilter)) {
+            show = false;
+          }
           
           // Filtro por tipo
-          if (tipoFilter && tipo !== tipoFilter) show = false;
+          if (tipoFilter && tipo !== tipoFilter) {
+            show = false;
+          }
           
-          // Filtro por data (implementação básica)
-          if (dataInicioFilter || dataFimFilter) {
-            // Aqui você pode implementar lógica mais sofisticada de filtro por data
-            // Por enquanto, apenas mostra todos se houver filtro de data
+          // --- LÓGICA DE DATA CORRIGIDA ---
+          // Só executa o filtro de data se o card ainda estiver visível
+          if (show && (inicioDate || fimDate)) {
+            // Converte a data do card (DD/MM/AAAA) para um objeto Date confiável
+            const [dia, mes, ano] = dataTexto.split('/');
+            const cardDate = new Date(ano, mes - 1, dia); // Mês é 0-indexado (0-11)
+
+            // Compara com a data de início
+            if (inicioDate && cardDate < inicioDate) {
+              show = false;
+            }
+
+            // Compara com a data de fim (de forma inclusiva)
+            if (fimDate && cardDate > fimDate) {
+              show = false;
+            }
           }
 
           card.style.display = show ? 'grid' : 'none';
+          if (show) {
+            visibleCardsCount++;
+          }
         });
         
-        // Se nenhum filtro estiver ativo, mostra todos os cards
-        if (!statusFilter && !enderecoFilter && !tipoFilter && !dataInicioFilter && !dataFimFilter) {
-          this.showAllCards();
+    
+
+        const noResultsMessage = document.getElementById('no-results-message');
+        if (visibleCardsCount === 0) {
+          noResultsMessage.style.display = 'block';
+        } else {
+          noResultsMessage.style.display = 'none';
         }
       }
 

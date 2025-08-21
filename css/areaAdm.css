@@ -2,6 +2,8 @@
   --brand-300: #3aaaf8;
   --brand-800: #1a70ab;
   --text: #083f6b;
+  --text-light: #ffffff; 
+  --muted: #6d6d6d; 
   --card-bg: rgba(255, 255, 255, 0.9);
   --card-border: #e0e0e0;
   --warn: #eea800;
@@ -148,20 +150,43 @@ textarea {
 }
 
 /* Filters */
-.filters {
-  margin-top: 8px;
-}
-
-.filters__label {
-  color: #fff;
-  font-weight: 600;
-}
-
+.filters { margin-top: 0; padding: 16px 0 8px; }
 .filters__row {
   margin-top: 12px;
-  display: grid;
-  grid-template-columns: 180px 1fr 220px 320px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.filters__title-container {
+  display: flex;
+  align-items: center;
   gap: 16px;
+  height: 40px;
+}
+
+.filters__title {
+  color: #fff; /* CORRIGIDO: Cor branca para ser visível */
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.filters__divider {
+  width: 3px;
+  height: 100%;
+  background-color: #fff; /* CORRIGIDO: Cor branca para ser visível */
+  border-radius: 2px;
+}
+
+#clear-filters-btn {
+  padding: 8px 24px;
+  font-size: 14px;
+  height: 40px;
+  background-color: var(--muted);
+  color: var(--text-light);
+  margin-left: auto;
 }
 
 .field {
@@ -176,18 +201,37 @@ textarea {
 }
 
 .field input,
-.field select {
+.field select{
   background: #f0f0f0;
-  border: 3px solid #949494;
+  border: 2px solid var(--card-border);
   border-radius: 30px;
-  height: 33px;
-  padding: 0 12px;
+  height: 34px;
+  padding: 0 14px;
+  outline: none;
+  color: var(--text);
+}
+
+.field--wide {
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 150px;
 }
 
 .field--dates .date-range {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
+}
+.field--dates input { height: 34px; }
+
+#clear-filters-btn { border-radius: 30px; white-space: nowrap; }
+
+.no-results {
+  text-align: center;
+  padding: 48px 24px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
 }
 
 /* Cards */
@@ -314,11 +358,36 @@ textarea {
   animation: modalSlideIn 0.3s ease-out;
 }
 
+.success-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease-out;
+}
+
+.success-message--success {
+  background: var(--ok);
+}
+
+.success-message--error {
+  background: #d32f2f;
+}
+
 @keyframes modalSlideIn {
   from {
     opacity: 0;
     transform: translateY(-50px) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -422,6 +491,14 @@ textarea {
   font-family: inherit;
   font-size: 16px;
   background: #fff;
+}
+
+/* Melhora visual do select Novo Status */
+#status-form select {
+  height: 48px;
+  border-radius: 30px;
+  border-width: 3px;
+  padding: 0 16px;
 }
 
 #status-form select:focus,
