@@ -4,7 +4,26 @@
 }
 
 .navbar {
-  background-color: #3AABDD !important; /* cor do fundo */
+  background-color: #3AABDD;
+}
+
+.header{
+    background-color: #3AABDD;
+    height: 160px;
+}
+
+.nav-link{
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.nav-link:hover{
+    color:#dfdfdf;
+}
+.nav-link.active{
+    color: white;
 }
 
 
@@ -21,13 +40,6 @@ body {
   padding: 40px 20px;
   font-family: 'Arial', sans-serif;
   color: #0f2c54;
-}
-
-.sobre-header h1 {
-  text-align: center;
-  color: #0f2c54;
-  font-size: 2rem;
-  margin-bottom: 20px;
 }
 
 .sobre-intro {
@@ -65,15 +77,6 @@ body {
   gap: 20px;
 }
 
-.letra-o {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  background-image: url("../imagem/gotaAzul.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  vertical-align: middle;
-}
 
 .card {
   background: linear-gradient(to bottom, #4ca1af, #1c92d2);
