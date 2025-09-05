@@ -1,10 +1,20 @@
-.logo {
-  width: 100px;   /* controla a largura */
-  height: auto;   /* mantém proporção */
+.header{
+    background-color: #3AABDD;
+    height: 160px;
 }
 
-.navbar {
-  background-color: #3AABDD !important; /* cor do fundo */
+.nav-link{
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.nav-link:hover{
+    color:#dfdfdf;
+}
+.nav-link.active{
+    color: white;
 }
 
 
@@ -64,8 +74,22 @@ label{
     width: 660px;
     z-index: 1;
 }
+@media (max-width: 768px) {
+  
+  .containerPaiForm {
+    width: 90%;    
+    max-width: 500px;
+    height: auto;   
+    padding: 20px 25px;  
+  }
 
-.custom-footer {
-  color: white;
-  background-color: #3AABDD !important; /* cor de fundo */
+  .containerPaiForm h2 {
+    font-size: 24px; 
+    margin-top: 1rem !important; 
+  }
+
+  
+  .d-grid.col-8 {
+    width: 100% !important; 
+  }
 }

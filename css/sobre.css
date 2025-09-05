@@ -1,0 +1,137 @@
+.logo {
+  width: 100px;   
+  height: auto;  
+}
+
+.navbar {
+  background-color: #3AABDD;
+}
+
+.header{
+    background-color: #3AABDD;
+    height: 160px;
+}
+
+.nav-link{
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.nav-link:hover{
+    color:#dfdfdf;
+}
+.nav-link.active{
+    color: white;
+}
+
+
+body {
+  background: linear-gradient(to bottom, #FFFFFF, #1570AB);
+  background-attachment: fixed; 
+  margin: 0;
+  height: 100vh;
+  font-family: 'Montserrat';
+}
+
+.sobre-nos {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  color: #0f2c54;
+}
+
+.sobre-intro {
+  text-align: center;
+  background: linear-gradient(to bottom, #4ca1af, #1c92d2);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+}
+
+.sobre-pilar {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.sobre-pilar strong {
+  color: #1c92d2;
+}
+
+.sobre-como h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: #0f2c54;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+.card {
+  background: linear-gradient(to bottom, #4ca1af, #1c92d2);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24px;
+}
+
+.card-bottom {
+  width: 650px; 
+}
+
+.card .icon img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+
+.main-content {
+  position: relative;
+  min-height: 100vh;       
+  display: flex;           
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;     
+  text-align: center;
+  padding: 40px 20px;      
+  box-sizing: border-box;  
+}
+
+
+.custom-footer {
+  color: white;
+  background-color: #3AABDD; 
+}
+
+
+@media (max-width: 768px) {
+  .main-content h1 {
+    font-size: 2.5rem;
+  }
+  .main-content p {
+    font-size: 1.2rem;
+  }
+}

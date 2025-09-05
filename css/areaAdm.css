@@ -14,12 +14,11 @@
   box-sizing: border-box;
 }
 
-
 html,
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat';
 }
 
 button,
@@ -39,56 +38,36 @@ textarea {
   margin: 0 auto;
 }
 
-/* Header */
-.header {
-  background: var(--brand-300);
-  height: 180px;
-  display: flex;
-  align-items: center;
+
+.logo {
+  width: 100px;   
+  height: auto;   
 }
 
-.header__content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.navbar {
+  background-color: #3AABDD; 
+}
+.header{
+    background-color: #3AABDD;
+    height: 160px;
 }
 
-.header__brand {
-  width: 194px;
-  height: 140px;
-  display: grid;
-  place-items: center;
+.nav-link{
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.nav-link:hover{
+    color:#dfdfdf;
+}
+.nav-link.active{
+    color: white;
 }
 
-.header__logo {
-  width: 194px;
-  height: 140px;
-  object-fit: contain;
-}
 
-.header__nav {
-  display: flex;
-  gap: 32px;
-}
 
-.nav__link {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.header__user {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.user__name {
-  color: #fff;
-  font-weight: 600;
-}
-
-/* Buttons */
 .btn {
   padding: 6px 16px;
   border-radius: 6px;
@@ -139,7 +118,7 @@ textarea {
   color: #fff;
 }
 
-/* Section */
+
 .section {
   padding: 16px 0 32px;
 }
@@ -150,7 +129,7 @@ textarea {
   font-size: clamp(20px, 3vw, 36px);
 }
 
-/* Filters */
+
 .filters { margin-top: 0; padding: 16px 0 8px; }
 .filters__row {
   margin-top: 12px;
@@ -168,7 +147,7 @@ textarea {
 }
 
 .filters__title {
-  color: #fff; /* CORRIGIDO: Cor branca para ser visível */
+  color: #fff; 
   font-size: 24px;
   font-weight: 700;
   margin: 0;
@@ -177,7 +156,7 @@ textarea {
 .filters__divider {
   width: 3px;
   height: 100%;
-  background-color: #fff; /* CORRIGIDO: Cor branca para ser visível */
+  background-color: #fff; 
   border-radius: 2px;
 }
 
@@ -235,7 +214,7 @@ textarea {
   font-size: 18px;
 }
 
-/* Cards */
+
 .cards {
   list-style: none;
   padding: 0;
@@ -333,7 +312,7 @@ textarea {
   margin-top: auto;
 }
 
-/* Modais */
+
 .modal {
   display: none;
   position: fixed;
@@ -381,11 +360,6 @@ textarea {
 
 .success-message--error {
   background: #d32f2f;
-}
-
-.custom-footer {
-  color: white;
-  background-color: #3AABDD 
 }
 
 @keyframes modalSlideIn {
@@ -439,7 +413,7 @@ textarea {
   padding: 24px;
 }
 
-/* Grid de detalhes */
+
 .details-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -476,7 +450,7 @@ textarea {
   border-top: 1px solid #e0e0e0;
 }
 
-/* Formulário de status */
+
 #status-form .field {
   margin-bottom: 16px;
 }
@@ -499,7 +473,7 @@ textarea {
   background: #fff;
 }
 
-/* Melhora visual do select Novo Status */
+
 #status-form select {
   height: 48px;
   border-radius: 30px;
@@ -530,7 +504,7 @@ textarea {
   min-width: 100px;
 }
 
-/* Responsive */
+
 @media (max-width: 900px) {
   .filters__row {
     grid-template-columns: 1fr;

@@ -21,12 +21,12 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat';
   background-color: var(--bg);
   color: var(--text);
 }
 
-/* Garantir que todos os controles herdem a fonte */
+
 button,
 input,
 select,
@@ -39,56 +39,33 @@ textarea {
   margin: 0 auto;
 }
 
-/* Header */
-.header {
-  background: var(--brand-300);
-  height: 180px;
-  display: flex;
-  align-items: center;
+.navbar {
+  background-color: #3AABDD; 
+}
+.header{
+    background-color: #3AABDD;
+    height: 160px;
 }
 
-.header__content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.nav-link{
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
-
-.header__brand {
-  width: 194px;
-  height: 140px;
-  display: grid;
-  place-items: center;
+.nav-link:hover{
+    color:#dfdfdf;
 }
-
-.header__logo {
-  width: 194px;
-  height: 140px;
-  object-fit: contain;
+.nav-link.active{
+    color: white;
 }
-
-.header__nav {
-  display: flex;
-  gap: 32px;
-}
-
-.nav__link {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.header__user {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
 .user__name {
   color: #fff;
   font-weight: 600;
 }
 
-/* Buttons */
+
 .btn { 
     padding: 12px 80px; 
     font-size: 18px;    
@@ -126,7 +103,7 @@ textarea {
   line-height: 1.3;
 }
 
-/* Call-to-action pill */
+
 .cta {
   padding: 24px 0 64px;
 }
@@ -146,14 +123,14 @@ textarea {
   font-weight: 600;
 }
 
-/* Claims section */
+
 .section__title {
   text-align: center;
   color: var(--brand-800);
-  font-size: 36px; /* Aumenta o tamanho da fonte */
-  font-weight: 700; /* Garante que o texto seja "bold" */
-  margin-bottom: 40px; /* Adiciona mais espaço abaixo do título */
-  letter-spacing: -0.5px; /* Ajuste fino no espaçamento das letras */
+  font-size: 36px; 
+  font-weight: 700; 
+  margin-bottom: 40px; 
+  letter-spacing: -0.5px; 
 }
 
 .rule {
@@ -176,17 +153,17 @@ textarea {
 
 .filters__row {
   margin-top: 12px;
-  display: flex; /* MUDANÇA: Usar Flexbox para alinhar os itens */
-  align-items: center; /* Alinha verticalmente todos os itens */
-  gap: 24px; /* Espaço entre os filtros */
-  flex-wrap: wrap; /* Permite que os filtros quebrem para a linha de baixo em telas menores */
+  display: flex; 
+  align-items: center; 
+  gap: 24px; 
+  flex-wrap: wrap; 
 }
 
 .filters__title-container {
   display: flex;
   align-items: center;
   gap: 16px;
-  height: 40px; /* Altura para alinhar com os inputs */
+  height: 40px; 
 }
 
 .filters__title {
@@ -208,7 +185,7 @@ textarea {
   font-size: 14px;
   height: 40px;
   background-color: var(--muted);
-  color: var(--text-light); /* Garante o texto branco como na imagem */
+  color: var(--text-light);
   margin-left: auto;
 }
 
@@ -352,7 +329,7 @@ textarea {
   color: var(--text);
 }
 
-/* Form section with gradient panel */
+
 .form-section {
     margin: 64px auto; 
     max-width: 1300px; 
@@ -417,13 +394,11 @@ textarea {
   text-align: center;
 }
 
-/* Footer placeholder */
-.custom-footer {
-  color: white;
-  background-color: #3AABDD !important; /* cor de fundo */
-} 
 
-/* Responsive */
+.footer {
+  height: 48px;
+}
+
 @media (max-width: 900px) {
   .filters__row {
     grid-template-columns: 1fr;
@@ -434,8 +409,11 @@ textarea {
     grid-template-columns: 1fr;
     gap: 12px;
   }
-
-  .field--span-2 {
+  
+ 
+  .field--span-1,
+  .field--span-2,
+  .field--span-3 {
     grid-column: span 1;
   }
 
@@ -497,7 +475,7 @@ textarea {
   .field select,
   .field textarea {
     height: 40px;
-    font-size: 16px; /* Evita zoom no iOS */
+    font-size: 16px; 
   }
 
   .form .field input,
@@ -523,6 +501,10 @@ textarea {
   .btn {
     padding: 12px 24px;
     font-size: 16px;
+  }
+
+  .form-section {
+    padding: 24px 16px;
   }
 }
 

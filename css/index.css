@@ -1,0 +1,80 @@
+
+.logo {
+  width: 100px;   
+  height: auto;   
+}
+
+.navbar {
+  background-color: #3AABDD; 
+}
+.header{
+    background-color: #3AABDD;
+    height: 160px;
+}
+
+.nav-link{
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.nav-link:hover{
+    color:#dfdfdf;
+}
+.nav-link.active{
+    color: white;
+}
+
+.main-content {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  font-family: 'Montserrat';
+
+  background-color: #80b4d6;
+  background-image: url("../imagem/fundoInicio.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+}
+
+
+
+.main-content h1 {
+  color: white;
+  text-align: center;       
+  padding-top: 50px;
+  font-size: 4.5rem;
+  margin-bottom: 20px;
+}
+
+.main-content .author {
+  color: white;
+  text-align: right;        
+  font-size: 2rem;          
+  margin-top: 10px;
+  width: 100%;  
+  font-size: 18px;            
+}
+
+.custom-footer {
+  color: white;
+  background-color: #3AABDD !important; /
+}
+
+@media (max-width: 768px) {
+  .main-content h1 {
+    font-size: 2.5rem;
+  }
+  .main-content p {
+    font-size: 1.2rem;
+  }
+}
