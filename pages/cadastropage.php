@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/cadastro.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <title>Página de Cadastro</title>
+</head>
+
+<body>
+  <div class="header">
+    <nav class="navbar navbar-expand-lg navbar-custom p-2">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="../imagem/logobranca.png" alt="Logo RAU" class="logo-img">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuNavbar">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link px-5" href="inicial.php">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3" href="sobre.php">Sobre Nós</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link px-5" href="loginpage.php">Cadastro/Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <div class="container mt-5 containerPaiForm">
+      <h2 class="mt-5 text-center">CADASTRO</h2>
+      <form>
+        <div class="form-group pt-4">
+          <label for="name">Nome Completo:</label>
+          <input type="text" class="form-control" id="name" placeholder="João da Silva">
+        </div>
+        <div class="form-group pt-4">
+          <label for="email">E-mail:</label>
+          <input type="email" class="form-control" id="email" placeholder="joao@gmail.com">
+        </div>
+        <div class="form-group pt-4">
+          <label for="password">Senha:</label>
+          <input type="password" class="form-control" id="senha" placeholder="********">
+        </div>
+        <div class="form-group pt-4">
+          <label for="tel">Telefone:</label>
+          <input type="tel" class="form-control" id="tel" placeholder="34 99999-9999">
+        </div>
+        <div class="form-group pt-4">
+          <label for="funcao">Função: </label>
+          <br>
+          <div class="form-check form-check-inline pt-3">
+            <input class="form-check-input" type="radio" name="funcaoPessoa" value="opcao1">
+            <label class="form-check-label">Administrador</label>
+          </div>
+          <div class="form-check form-check-inline pt-3">
+            <input class="form-check-input" type="radio" name="funcaoPessoa" value="opcao2">
+            <label class="form-check-label">Cliente</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4 d-flex mx-auto">Cadastrar</button>
+      </form>
+
+    </div>
+  </main>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+<script src="../scripts/cadastro.js" defer></script>
+
+</html>
