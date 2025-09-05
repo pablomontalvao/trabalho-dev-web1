@@ -13,6 +13,7 @@ class AdminComplaintManager {
         console.log('AdminComplaintManager inicializado com', this.complaints.length, 'reclamações');
     }
 
+    // event listeners para os filtros
     setupFilters() {
         const statusFilter = document.getElementById('f-status');
         const enderecoFilter = document.getElementById('f-endereco');
@@ -32,6 +33,7 @@ class AdminComplaintManager {
         this.showAllCards();
     }
 
+    // limpa todos os filtros e mostra todas as reclamações
     clearFilters() {
         document.getElementById('f-status').value = '';
         document.getElementById('f-endereco').value = '';
@@ -51,6 +53,7 @@ class AdminComplaintManager {
         });
     }
 
+    // carrega as reclamações existentes na página
     loadExistingComplaints() {
         console.log('Carregando reclamações existentes...');
         const existingCards = document.querySelectorAll('.card');
@@ -98,6 +101,7 @@ class AdminComplaintManager {
         }
     }
 
+    // aplica os filtros às reclamações exibidas
     applyFilters() {
         const statusFilter = document.getElementById('f-status').value;
         const enderecoFilter = document.getElementById('f-endereco').value.toLowerCase();
@@ -150,7 +154,7 @@ class AdminComplaintManager {
         });
 
 
-
+        // mostra mensagem se nenhum card for visível
         const noResultsMessage = document.getElementById('no-results-message');
         if (visibleCardsCount === 0) {
             noResultsMessage.style.display = 'block';
