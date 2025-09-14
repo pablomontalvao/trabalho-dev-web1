@@ -1,42 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     const form = document.querySelector('form');
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         // Obter dados do formulário
-        const nome = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const senha = document.getElementById('senha').value;
-        const telefone = document.getElementById('tel').value;
-        const funcaoSelecionada = document.querySelector('input[name="funcaoPessoa"]:checked');
 
         // Validar campos obrigatórios
-        if (!nome || !email || !senha || !telefone) {
-            showMessage('Todos os campos são obrigatórios!', 'error');
+        if (!email || !senha) {
+            showMessage('Email e senha são obrigatórios!', 'error');
             return;
         }
-
-        if (!funcaoSelecionada) {
-            showMessage('Por favor, selecione uma função (Administrador ou Cliente).', 'error');
-            return;
-        }
-
-        // Converter valor da função
-        const valorFuncao = funcaoSelecionada.value === 'opcao1' ? 'adm' : 'cliente';
 
         // Preparar dados para envio
         const formData = new FormData();
-        formData.append('nome', nome);
         formData.append('email', email);
         formData.append('senha', senha);
-        formData.append('telefone', telefone);
-        formData.append('funcao', valorFuncao);
 
         try {
             // Enviar dados para o PHP
-            const response = await fetch('../php/cadastro.php', {
+            const response = await fetch('../php/login.php', {
                 method: 'POST',
                 body: formData
             });
@@ -46,20 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (result.status === 'success') {
                 showMessage(result.message, 'success');
                 
-                // Redirecionar após sucesso
+                // Redirecionar para a página correta
                 setTimeout(() => {
-                    if (valorFuncao === 'cliente') {
-                        window.location.href = 'areaCliente.html';
-                    } else {
-                        window.location.href = 'areaAdm.html';
-                    }
-                }, 2000);
+                    window.location.href = result.redirect;
+                }, 1500);
             } else {
                 showMessage(result.message, 'error');
             }
         } catch (error) {
             console.error('Erro:', error);
-            showMessage('Erro ao processar cadastro. Tente novamente.', 'error');
+            showMessage('Erro ao processar login. Tente novamente.', 'error');
         }
     });
 

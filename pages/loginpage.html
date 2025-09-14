@@ -48,15 +48,14 @@
       <form>
         <div class="form-group pt-4">
           <label for="email">E-mail:</label>
-          <input type="email" class="form-control" id="email" placeholder="joao@gmail.com">
+          <input type="email" class="form-control" id="email" placeholder="joao@gmail.com" required>
         </div>
         <div class="form-group pt-4">
           <label for="password">Senha:</label>
-          <input type="password" class="form-control" id="senha" placeholder="********">
+          <input type="password" class="form-control" id="senha" placeholder="********" required>
         </div>
         <div class="d-grid gap-2 col-8 mx-auto mt-4">
-          <a href="areaCliente.html" class="btn btn-primary" role="button">Entrar como Cliente</a>
-          <a href="areaAdm.html" class="btn btn-secondary" role="button">Entrar como Administrador</a>
+          <button type="submit" class="btn btn-primary">Entrar</button>
         </div>
       </form>
       <h3 class="mt-4 text-center">Não tem uma conta? <u><a href="cadastropage.html">Cadastre-se.</a></u></h3>
@@ -67,4 +66,5 @@
   </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+<script src="../scripts/login.js" defer></script>
 </html>

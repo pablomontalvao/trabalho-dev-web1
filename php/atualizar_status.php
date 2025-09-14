@@ -1,0 +1,101 @@
+<?php
+// Iniciar sessão
+session_start();
+
+// Definir header para JSON
+header('Content-Type: application/json');
+
+// Verificar se usuário está logado
+if (!isset($_SESSION['usuario_id'])) {
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'Usuário não está logado'
+    ]);
+    exit();
+}
+
+// Verificar se usuário é admin
+if ($_SESSION['usuario_funcao'] !== 'adm') {
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'Acesso negado. Apenas administradores podem atualizar status.'
+    ]);
+    exit();
+}
+
+// Verificar se é método POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'Método não permitido'
+    ]);
+    exit();
+}
+
+// Incluir conexão com banco
+require_once 'conexao.php';
+
+// Receber dados do POST
+$reclamacao_id = $_POST['id'] ?? '';
+$novo_status = $_POST['status'] ?? '';
+$observacoes_adm = $_POST['observacoes_adm'] ?? '';
+
+// Validar campos obrigatórios
+if (empty($reclamacao_id) || empty($novo_status)) {
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'ID da reclamação e status são obrigatórios'
+    ]);
+    exit();
+}
+
+// Validar status válido
+$status_validos = ['pendente', 'andamento', 'resolvido'];
+if (!in_array($novo_status, $status_validos)) {
+    echo json_encode([
+        'status' => 'error',
+    ]);
+    exit();
+}
+
+try {
+    // Verificar se a reclamação existe
+    $stmt = $pdo->prepare("SELECT id FROM reclamacoes WHERE id = ?");
+    $stmt->execute([$reclamacao_id]);
+    
+    if ($stmt->rowCount() === 0) {
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Reclamação não encontrada'
+        ]);
+        exit();
+    }
+    
+    // Atualizar status e observações
+    $stmt = $pdo->prepare("
+        UPDATE reclamacoes 
+        SET status = ?, observacoes_adm = ? 
+        WHERE id = ?
+    ");
+    
+    $resultado = $stmt->execute([$novo_status, $observacoes_adm, $reclamacao_id]);
+    
+    if ($resultado) {
+        echo json_encode([
+            'status' => 'success',
+            'message' => 'Status atualizado com sucesso!'
+        ]);
+    } else {
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Erro ao atualizar status'
+        ]);
+    }
+    
+} catch(PDOException $e) {
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'Erro no banco de dados: ' . $e->getMessage()
+    ]);
+}
+?>
