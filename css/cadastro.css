@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .header{
     background-color: #3AABDD;
     height: 160px;
@@ -76,3 +77,101 @@ label{
     z-index: 1;
 }
 
+=======
+.header{
+    background-color: #3AABDD;
+    height: 160px;
+}
+
+.nav-link{
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.nav-link:hover{
+    color:#dfdfdf;
+}
+.nav-link.active{
+    color: white;
+}
+
+
+
+.form-control{
+    border-radius: 30px;
+    padding: 10px 10px 10px 15px;
+}
+.form-control::placeholder{
+    color: #bbbbbb;
+}
+
+main{
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  
+  background-color: #85daff;
+  background-image: url(../imagem/fundopaglogin.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply; 
+} 
+
+.btn {
+    border-radius: 30px;
+    padding: 7px 60px;
+    color: #FFF;
+    background-color: #3AABDD;
+    font-size: 20;
+    font-weight: 700;
+}
+h2{
+    color: #FFF;
+    font-size: 30px;
+    font-weight: 700;
+}
+h3{
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 700;
+}
+label{
+    color: #FFF;
+    font-weight: 600;
+}
+
+.containerPaiForm{
+    background-image: linear-gradient(#1D85C8, #004555);
+    border-radius: 15px;
+    padding: 20px 40px;
+    height: 680px;
+    width: 660px;
+    z-index: 1;
+}
+@media (max-width: 768px) {
+  
+  .containerPaiForm {
+    width: 90%;    
+    max-width: 500px; 
+    height: auto;     
+    padding: 20px 25px;  
+  }
+
+  .containerPaiForm h2 {
+    font-size: 24px; 
+    margin-top: 1rem !important; 
+  }
+
+ 
+  .d-grid.col-8 {
+    width: 100% !important; 
+  }
+}
+>>>>>>> a4e2169729d312bd572d2c456c758564c3c7f0e6

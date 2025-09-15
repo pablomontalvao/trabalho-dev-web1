@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/sobre.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <title>Sobre nós</title>
+</head>
+
+<body>
+  <div class="header">
+    <nav class="navbar navbar-expand-lg navbar-custom p-2">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="../imagem/logobranca.png" alt="Logo RAU" class="logo-img">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuNavbar">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link px-5" href="inicial.php">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3" href="sobre.php">Sobre Nós</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link px-5" href="loginpage.php">Cadastro/Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <main class="sobre-nos" style="flex: 1 0 auto;">
+    <section class="sobre-header">
+      <h1 class="text-center m-5">ODS 6 – Água Potável e Saneamento</h1>
+      <p class="sobre-intro">
+        O projeto está diretamente relacionado a um dos 17 Objetivos de Desenvolvimento Sustentável (ODS) da ONU,
+        que visa <strong>“assegurar a disponibilidade e a gestão sustentável da água e saneamento para todas e
+          todos”</strong>
+      </p>
+    </section>
+
+    <section class="sobre-pilar">
+      <p>
+        O principal pilar do nosso sistema é apoiar e <strong>fortalecer a participação das comunidades locais</strong>,
+        para melhorar a gestão da água e do saneamento
+      </p>
+      <img src="../imagem/comoimg.png" alt="palavra Como?">
+    </section>
+
+    <section class="sobre-como">
+      <img src="" alt="">
+      <div class="cards-container">
+        <div class="card">
+          <div class="icon">
+            <img src="../imagem/gotaicon.svg" alt="Ícone gota d'água">
+          </div>
+          <p>
+            Permitindo que os cidadãos <strong>reportem problemas</strong> como água suja ou contaminada,
+            o sistema funciona como uma ferramenta de vigilância popular que pressiona pela garantia de "água potável e
+            segura para todos"
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">
+            <img src="../imagem/torneiraicon.png" alt="Ícone torneira">
+          </div>
+          <p>
+            Promovendo a <strong>identificação rápida de problemas na rede de esgoto</strong> (vazamentos, entupimentos)
+            ajudando as autoridades a agirem rapidamente para garantir o "acesso a saneamento e higiene adequados e
+            equitativos"
+          </p>
+        </div>
+
+        <div class="card card-bottom">
+          <div class="icon">
+            <img src="../imagem/esgotoicon.svg" alt="Ícone ondas">
+          </div>
+          <p>
+            Facilitando a <strong>denúncia de despejos irregulares</strong>, reportada pelos usuários, colaborando para
+            "melhorar a qualidade da água, reduzindo a poluição, eliminando despejo e minimizando a liberação de
+            produtos químicos"
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="custom-footer text-center py-3 mt-auto w-100">
+    <p>&copy; “Trabalho final DWEB – Grupo RAU"</p>
+  </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+</html>
