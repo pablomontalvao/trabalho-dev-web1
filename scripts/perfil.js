@@ -5,24 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const telefoneInput = document.getElementById('telefone');
     const mensagemDiv = document.getElementById('mensagem');
 
-    // 1. Verificar a sessão e carregar os dados do usuário
     fetch('../php/verificar_sessao.php')
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                // Preenche o formulário com os dados do usuário
+                
                 nomeInput.value = data.usuario.nome;
                 emailInput.value = data.usuario.email;
-                // O telefone não está na sessão, então idealmente buscaríamos ele do banco.
-                // Por enquanto, deixaremos como está, mas o ideal seria adicionar o telefone
-                // à resposta de `verificar_sessao.php`.
-                // Assumindo que o telefone não está na sessão:
-                telefoneInput.placeholder = '(12) 34567-8910'; // Exemplo
-                // Se você adicionar o telefone à sessão, descomente a linha abaixo:
-                // telefoneInput.value = data.usuario.telefone;
+                
+                telefoneInput.placeholder = '(12) 34567-8910';
 
             } else {
-                // Se o usuário não estiver logado, redireciona para a página de login
+                //se o usuario nao estiver logado, redireciona para a página de login
                 alert(data.message);
                 window.location.href = data.redirect;
             }
@@ -32,12 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
             mensagemDiv.innerHTML = `<div class="alert alert-danger">Ocorreu um erro ao carregar seus dados.</div>`;
         });
 
-
-    // 2. Adicionar listener para o envio do formulário
     form.addEventListener('submit', (event) => {
-        event.preventDefault(); // Impede o recarregamento da página
+        event.preventDefault(); 
 
-        // Criar um objeto FormData para enviar os dados do formulário
         const formData = new FormData();
         formData.append('nome', nomeInput.value);
         formData.append('email', emailInput.value);
@@ -49,11 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(response => response.json())
         .then(data => {
-            // Exibe a mensagem de resposta do backend
             let alertClass = data.status === 'success' ? 'alert-success' : 'alert-danger';
             mensagemDiv.innerHTML = `<div class="alert ${alertClass}">${data.message}</div>`;
 
-            // Limpa a mensagem após 5 segundos
             setTimeout(() => {
                 mensagemDiv.innerHTML = '';
             }, 5000);

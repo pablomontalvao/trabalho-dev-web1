@@ -1,14 +1,11 @@
 <?php
-// Iniciar sessão
 session_start();
 
-// Definir header para JSON
+
 header('Content-Type: application/json');
 
-// Incluir conexão com o banco
 require_once 'conexao.php';
 
-// Verificar se o método é POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode([
         'status' => 'error',
@@ -17,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-// Verificar se o usuário está logado
+//verifica se o usuário está logado
 if (!isset($_SESSION['usuario_id'])) {
     echo json_encode([
         'status' => 'error',
@@ -26,13 +23,11 @@ if (!isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-// Receber dados do POST
 $nome = $_POST['nome'] ?? '';
 $email = $_POST['email'] ?? '';
 $telefone = $_POST['telefone'] ?? '';
-$id_usuario = $_SESSION['usuario_id']; // Pega o ID da sessão para segurança
+$id_usuario = $_SESSION['usuario_id']; 
 
-// Validar campos obrigatórios
 if (empty($nome) || empty($email) || empty($telefone)) {
     echo json_encode([
         'status' => 'error',
@@ -41,7 +36,6 @@ if (empty($nome) || empty($email) || empty($telefone)) {
     exit();
 }
 
-// Validar email
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo json_encode([
         'status' => 'error',
@@ -50,7 +44,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit();
 }
 
-// Validar telefone
+//valida telefone
 if (!preg_match('/^\(\d{2}\)\s\d{4,5}-\d{4}$/', $telefone) && !preg_match('/^\d{2}\s\d{4,5}-\d{4}$/', $telefone)) {
     echo json_encode([
         'status' => 'error',
@@ -60,7 +54,7 @@ if (!preg_match('/^\(\d{2}\)\s\d{4,5}-\d{4}$/', $telefone) && !preg_match('/^\d{
 }
 
 try {
-    // Verificar se o novo email já está em uso por OUTRO usuário
+    //verifica se o novo email ja est em uso por outro usuario
     $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ? AND id != ?");
     $stmt->execute([$email, $id_usuario]);
     
@@ -72,12 +66,11 @@ try {
         exit();
     }
     
-    // Atualizar os dados do usuário no banco
+    //atualizando os dados do usuario no bd
     $stmt = $pdo->prepare("UPDATE usuarios SET nome = ?, email = ?, telefone = ? WHERE id = ?");
     $resultado = $stmt->execute([$nome, $email, $telefone, $id_usuario]);
     
     if ($resultado) {
-        // Atualizar os dados da sessão com as novas informações
         $_SESSION['usuario_nome'] = $nome;
         $_SESSION['usuario_email'] = $email;
         
