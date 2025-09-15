@@ -8,12 +8,11 @@ class AdminComplaintManager {
     init() {
         console.log('Inicializando AdminComplaintManager...');
         this.setupFilters();
-        this.loadExistingComplaints();
+        this.loadComplaintsFromServer();
         this.setupStatusForm();
-        console.log('AdminComplaintManager inicializado com', this.complaints.length, 'reclamações');
+        console.log('AdminComplaintManager inicializado');
     }
 
-    // event listeners para os filtros
     setupFilters() {
         const statusFilter = document.getElementById('f-status');
         const enderecoFilter = document.getElementById('f-endereco');
@@ -33,7 +32,6 @@ class AdminComplaintManager {
         this.showAllCards();
     }
 
-    // limpa todos os filtros e mostra todas as reclamações
     clearFilters() {
         document.getElementById('f-status').value = '';
         document.getElementById('f-endereco').value = '';
@@ -53,37 +51,99 @@ class AdminComplaintManager {
         });
     }
 
-    // carrega as reclamações existentes na página
-    loadExistingComplaints() {
-        console.log('Carregando reclamações existentes...');
-        const existingCards = document.querySelectorAll('.card');
-        console.log('Cards encontrados:', existingCards.length);
+    async loadComplaintsFromServer() {
+        try {
+            const response = await fetch('../php/listar_reclamacoes.php');
+            const result = await response.json();
 
-        existingCards.forEach((card, index) => {
-            const id = parseInt(card.dataset.id);
-            const status = card.dataset.status;
-            const tipo = card.dataset.tipo;
-            const endereco = card.dataset.endereco;
-            const data = card.dataset.data;
-            const hora = card.dataset.hora;
-            const descricao = card.dataset.descricao;
-            const numero = card.dataset.numero;
-            const complemento = card.dataset.complemento;
+            if (result.status === 'success') {
+                // Limpar lista atual
+                const cardsList = document.getElementById('claims-list');
+                if (cardsList) {
+                    cardsList.innerHTML = '';
+                }
+                this.complaints = [];
 
-            this.complaints.push({
-                id,
-                status,
-                tipo,
-                endereco,
-                data,
-                hora,
-                descricao,
-                numero,
-                complemento
-            });
+                // Adicionar reclamações do servidor
+                result.data.forEach(complaint => {
+                    this.complaints.push(complaint);
+                    this.addComplaintCard(complaint);
+                });
 
-            console.log(`Card ${index + 1} carregado: ID ${id}, Status: ${status}, Tipo: ${tipo}`);
-        });
+                console.log(`Carregadas ${result.data.length} reclamações do servidor`);
+            } else {
+                console.error('Erro ao carregar reclamações:', result.message);
+                this.showSuccessMessage('Erro ao carregar reclamações', 'error');
+            }
+        } catch (error) {
+            console.error('Erro ao carregar reclamações:', error);
+            this.showSuccessMessage('Erro ao carregar reclamações', 'error');
+        }
+    }
+
+    addComplaintCard(complaint) {
+        const cardsList = document.getElementById('claims-list');
+        if (!cardsList) return;
+
+        const card = document.createElement('li');
+        card.className = 'card';
+        card.dataset.id = complaint.id;
+        card.dataset.status = complaint.status;
+
+        const enderecoCompleto = complaint.complemento
+            ? `${complaint.endereco}, ${complaint.numero} - ${complaint.complemento}`
+            : `${complaint.endereco}, ${complaint.numero}`;
+
+        // Formatar data
+        const dataFormatada = complaint.data_ocorrencia ?
+            new Date(complaint.data_ocorrencia).toLocaleDateString('pt-BR') :
+            complaint.data;
+
+        // Determinar ícone e texto do status
+        let statusIcon, statusText, statusClass;
+        switch (complaint.status) {
+            case 'recebido':
+                statusIcon = '../imagem/checkRecebido.png';
+                statusText = 'Recebido';
+                statusClass = 'status--recebido';
+                break;
+            case 'andamento':
+                statusIcon = '../imagem/checkEmAndamento.png';
+                statusText = 'Em andamento';
+                statusClass = 'status--andamento';
+                break;
+            case 'resolvido':
+                statusIcon = '../imagem/checkResolvido.png';
+                statusText = 'Resolvido';
+                statusClass = 'status--resolvido';
+                break;
+            default:
+                statusIcon = '../imagem/checkRecebido.png';
+                statusText = 'Recebido';
+                statusClass = 'status--recebido';
+        }
+
+        card.innerHTML = `
+          <div class="card__status">
+            <span class="status__label">Status</span>
+            <img class="status__icon" src="${statusIcon}" alt="Ícone status" />
+            <span class="status__text ${statusClass}">${statusText}</span>
+          </div>
+          <div class="card__body">
+            <div class="card__grid">
+              <div class="card__col"><span class="label">Tipo:</span><span class="value">${complaint.tipo}</span></div>
+              <div class="card__col"><span class="label">Endereço:</span><span class="value">${enderecoCompleto}</span></div>
+              <div class="card__col"><span class="label">Data:</span><span class="value">${dataFormatada}</span></div>
+              <div class="card__col"><span class="label">Hora:</span><span class="value">${complaint.hora_ocorrencia || ''}</span></div>
+              <div class="card__col card__col--full"><span class="label">Descrição:</span><span class="value">${complaint.descricao}</span></div>
+            </div>
+            <div class="card__actions">
+              <button class="btn btn--small" onclick="viewDetails(${complaint.id})">Ver Detalhes</button>
+            </div>
+          </div>
+        `;
+
+        cardsList.insertBefore(card, cardsList.firstChild);
     }
 
     setupStatusForm() {
@@ -101,7 +161,6 @@ class AdminComplaintManager {
         }
     }
 
-    // aplica os filtros às reclamações exibidas
     applyFilters() {
         const statusFilter = document.getElementById('f-status').value;
         const enderecoFilter = document.getElementById('f-endereco').value.toLowerCase();
@@ -154,7 +213,7 @@ class AdminComplaintManager {
         });
 
 
-        // mostra mensagem se nenhum card for visível
+
         const noResultsMessage = document.getElementById('no-results-message');
         if (visibleCardsCount === 0) {
             noResultsMessage.style.display = 'block';
@@ -218,13 +277,54 @@ class AdminComplaintManager {
         return this.complaints.find(c => c.id === id);
     }
 
-    submitStatusUpdate() {
+    showSuccessMessage(message, type = 'success') {
+        // Remover mensagem anterior se existir
+        const existingMessage = document.querySelector('.success-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+
+        const successMsg = document.createElement('div');
+        successMsg.className = 'success-message';
+        successMsg.textContent = message;
+
+        const bgColor = type === 'error' ? '#d32f2f' : '#179800';
+        const icon = type === 'error' ? '❌' : '✅';
+
+        successMsg.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${bgColor};
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        `;
+
+        successMsg.innerHTML = `${icon} ${message}`;
+
+        document.body.appendChild(successMsg);
+
+        setTimeout(() => {
+            successMsg.style.animation = 'slideOut 0.3s ease-in';
+            setTimeout(() => successMsg.remove(), 300);
+        }, 4000);
+    }
+
+    async submitStatusUpdate() {
         console.log('submitStatusUpdate chamado na classe');
         console.log('this.currentComplaintId:', this.currentComplaintId);
 
         if (!this.currentComplaintId) {
             console.error('Nenhuma reclamação selecionada para atualização');
-            showSuccessMessage('Erro: Nenhuma reclamação selecionada', 'error');
+            this.showSuccessMessage('Erro: Nenhuma reclamação selecionada', 'error');
             return;
         }
 
@@ -247,18 +347,38 @@ class AdminComplaintManager {
         console.log('Novo status:', newStatus);
         console.log('Observações:', notes);
 
-        if (this.updateComplaintStatus(this.currentComplaintId, newStatus, notes)) {
-            showSuccessMessage(`Status atualizado para: ${newStatus}`);
-            closeStatusModal();
+        try {
+            // Enviar dados para o PHP
+            const formData = new FormData();
+            formData.append('id', this.currentComplaintId);
+            formData.append('status', newStatus);
+            formData.append('observacoes_adm', notes);
 
-            const detailsModal = document.getElementById('details-modal');
-            if (detailsModal && detailsModal.style.display === 'block') {
-                const complaint = this.getComplaintDetails(this.currentComplaintId);
-                showDetailsModal(complaint);
+            const response = await fetch('../php/atualizar_status.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                this.showSuccessMessage(result.message);
+                closeStatusModal();
+
+                // Recarregar reclamações do servidor
+                await this.loadComplaintsFromServer();
+
+                const detailsModal = document.getElementById('details-modal');
+                if (detailsModal && detailsModal.style.display === 'block') {
+                    const complaint = this.getComplaintDetails(this.currentComplaintId);
+                    showDetailsModal(complaint);
+                }
+            } else {
+                this.showSuccessMessage(result.message, 'error');
             }
-        } else {
-            console.error('Falha ao atualizar status');
-            showSuccessMessage('Erro ao atualizar status', 'error');
+        } catch (error) {
+            console.error('Erro ao atualizar status:', error);
+            this.showSuccessMessage('Erro ao atualizar status', 'error');
         }
     }
 }
@@ -284,8 +404,20 @@ function showDetailsModal(complaint) {
     modalBody.innerHTML = `
         <div class="details-grid">
           <div class="detail-item">
+            <span class="detail-label">ID:</span>
+            <span class="detail-value">#${complaint.id}</span>
+          </div>
+          <div class="detail-item">
             <span class="detail-label">Status:</span>
-            <span class="detail-value status--${complaint.status}">${complaint.status}</span>
+            <span class="detail-value status--${complaint.status}">${complaint.status === 'recebido' ? 'Recebido' : complaint.status === 'andamento' ? 'Em andamento' : 'Resolvido'}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Cliente:</span>
+            <span class="detail-value">${complaint.usuario_nome || 'N/A'}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Email:</span>
+            <span class="detail-value">${complaint.usuario_email || 'N/A'}</span>
           </div>
           <div class="detail-item">
             <span class="detail-label">Tipo:</span>
@@ -305,20 +437,24 @@ function showDetailsModal(complaint) {
           </div>
           <div class="detail-item">
             <span class="detail-label">Data:</span>
-            <span class="detail-value">${complaint.data}</span>
+            <span class="detail-value">${complaint.data_ocorrencia ? new Date(complaint.data_ocorrencia).toLocaleDateString('pt-BR') : complaint.data}</span>
           </div>
           <div class="detail-item">
             <span class="detail-label">Hora:</span>
-            <span class="detail-value">${complaint.hora}</span>
+            <span class="detail-value">${complaint.hora_ocorrencia || ''}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Data de Criação:</span>
+            <span class="detail-value">${complaint.data_criacao ? new Date(complaint.data_criacao).toLocaleDateString('pt-BR') : 'N/A'}</span>
           </div>
           <div class="detail-item detail-item--full">
             <span class="detail-label">Descrição:</span>
             <span class="detail-value">${complaint.descricao}</span>
           </div>
-          ${complaint.notes ? `
+          ${complaint.observacoes_adm ? `
           <div class="detail-item detail-item--full">
-            <span class="detail-label">Observações:</span>
-            <span class="detail-value">${complaint.notes}</span>
+            <span class="detail-label">Observações do Administrador:</span>
+            <span class="detail-value">${complaint.observacoes_adm}</span>
           </div>
           ` : ''}
           ${complaint.lastUpdate ? `
@@ -401,6 +537,12 @@ function submitStatusUpdate() {
 }
 
 function showSuccessMessage(message, type = 'success') {
+    // Remover mensagem anterior se existir
+    const existingMessage = document.querySelector('.success-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+
     const successMsg = document.createElement('div');
     successMsg.className = 'success-message';
     successMsg.textContent = message;
