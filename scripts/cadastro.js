@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Validar senha (mínimo 6 caracteres)
+        if (senha.length < 6) {
+            showMessage('A senha deve ter pelo menos 6 caracteres!', 'error');
+            return;
+        }
+        
         // Converter valor da função
         const valorFuncao = funcaoSelecionada.value === 'opcao1' ? 'adm' : 'cliente';
 
@@ -44,15 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
 
             if (result.status === 'success') {
-                showMessage(result.message, 'success');
+                showMessage(result.message + ' Faça login para continuar.', 'success');
                 
-                // Redirecionar após sucesso
+                // Redirecionar para login após sucesso
                 setTimeout(() => {
-                    if (valorFuncao === 'cliente') {
-                        window.location.href = 'areaCliente.html';
-                    } else {
-                        window.location.href = 'areaAdm.html';
-                    }
+                    window.location.href = 'loginpage.html';
                 }, 2000);
             } else {
                 showMessage(result.message, 'error');

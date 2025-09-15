@@ -10,6 +10,16 @@ class ComplaintManager {
         this.setupForm();
         this.setupFilters();
         this.loadComplaintsFromServer();
+        this.setMaxDate();
+    }
+
+    setMaxDate() {
+        // Definir data máxima como hoje
+        const dataInput = document.getElementById('data');
+        if (dataInput) {
+            const hoje = new Date().toISOString().split('T')[0];
+            dataInput.max = hoje;
+        }
     }
 
     setupForm() {
@@ -92,6 +102,15 @@ class ComplaintManager {
 
     async submitComplaint() {
         const formData = new FormData(document.getElementById('complaint-form'));
+        
+        // Validar data (não pode ser futura)
+        const dataOcorrencia = formData.get('data');
+        const hoje = new Date().toISOString().split('T')[0];
+        
+        if (dataOcorrencia > hoje) {
+            this.showSuccessMessage('A data da ocorrência não pode ser futura!', 'error');
+            return;
+        }
 
         try {
             // Enviar dados para o PHP
@@ -144,7 +163,7 @@ class ComplaintManager {
                 statusText = 'Recebido';
                 statusClass = 'status--recebido';
                 break;
-            case 'em_andamento':
+            case 'andamento':
                 statusIcon = '../imagem/checkEmAndamento.png';
                 statusText = 'Em andamento';
                 statusClass = 'status--andamento';

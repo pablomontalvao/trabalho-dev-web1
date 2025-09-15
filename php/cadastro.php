@@ -39,6 +39,24 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit();
 }
 
+// Validar senha (mínimo 6 caracteres)
+if (strlen($senha) < 6) {
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'A senha deve ter pelo menos 6 caracteres'
+    ]);
+    exit();
+}
+
+// Validar telefone (formato básico)
+if (!preg_match('/^\(\d{2}\)\s\d{4,5}-\d{4}$/', $telefone) && !preg_match('/^\d{2}\s\d{4,5}-\d{4}$/', $telefone)) {
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'Telefone inválido. Use o formato: (34) 99999-9999 ou 34 99999-9999'
+    ]);
+    exit();
+}
+
 try {
     // Verificar se email já existe
     $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ?");

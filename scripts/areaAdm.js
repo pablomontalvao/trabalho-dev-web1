@@ -107,7 +107,7 @@ class AdminComplaintManager {
                 statusText = 'Recebido';
                 statusClass = 'status--recebido';
                 break;
-            case 'em_andamento':
+            case 'andamento':
                 statusIcon = '../imagem/checkEmAndamento.png';
                 statusText = 'Em andamento';
                 statusClass = 'status--andamento';
@@ -250,7 +250,7 @@ class AdminComplaintManager {
                 statusText.className = 'status__text';
 
                 switch (newStatus) {
-                    case 'recebido':
+                    case 'pendente':
                         statusIcon.src = '../imagem/checkRecebido.png';
                         statusIcon.alt = 'Recebido';
                         statusText.textContent = 'Recebido';
@@ -404,8 +404,20 @@ function showDetailsModal(complaint) {
     modalBody.innerHTML = `
         <div class="details-grid">
           <div class="detail-item">
+            <span class="detail-label">ID:</span>
+            <span class="detail-value">#${complaint.id}</span>
+          </div>
+          <div class="detail-item">
             <span class="detail-label">Status:</span>
-            <span class="detail-value status--${complaint.status}">${complaint.status}</span>
+            <span class="detail-value status--${complaint.status}">${complaint.status === 'pendente' ? 'Recebido' : complaint.status === 'andamento' ? 'Em andamento' : 'Resolvido'}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Cliente:</span>
+            <span class="detail-value">${complaint.usuario_nome || 'N/A'}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Email:</span>
+            <span class="detail-value">${complaint.usuario_email || 'N/A'}</span>
           </div>
           <div class="detail-item">
             <span class="detail-label">Tipo:</span>
@@ -425,20 +437,24 @@ function showDetailsModal(complaint) {
           </div>
           <div class="detail-item">
             <span class="detail-label">Data:</span>
-            <span class="detail-value">${complaint.data}</span>
+            <span class="detail-value">${complaint.data_ocorrencia ? new Date(complaint.data_ocorrencia).toLocaleDateString('pt-BR') : complaint.data}</span>
           </div>
           <div class="detail-item">
             <span class="detail-label">Hora:</span>
-            <span class="detail-value">${complaint.hora}</span>
+            <span class="detail-value">${complaint.hora_ocorrencia || ''}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Data de Criação:</span>
+            <span class="detail-value">${complaint.data_criacao ? new Date(complaint.data_criacao).toLocaleDateString('pt-BR') : 'N/A'}</span>
           </div>
           <div class="detail-item detail-item--full">
             <span class="detail-label">Descrição:</span>
             <span class="detail-value">${complaint.descricao}</span>
           </div>
-          ${complaint.notes ? `
+          ${complaint.observacoes_adm ? `
           <div class="detail-item detail-item--full">
-            <span class="detail-label">Observações:</span>
-            <span class="detail-value">${complaint.notes}</span>
+            <span class="detail-label">Observações do Administrador:</span>
+            <span class="detail-value">${complaint.observacoes_adm}</span>
           </div>
           ` : ''}
           ${complaint.lastUpdate ? `

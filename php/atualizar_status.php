@@ -54,6 +54,7 @@ $status_validos = ['pendente', 'andamento', 'resolvido'];
 if (!in_array($novo_status, $status_validos)) {
     echo json_encode([
         'status' => 'error',
+        'message' => 'Status inválido. Use: pendente, andamento ou resolvido'
     ]);
     exit();
 }
