@@ -57,14 +57,12 @@ class AdminComplaintManager {
             const result = await response.json();
 
             if (result.status === 'success') {
-                // Limpar lista atual
                 const cardsList = document.getElementById('claims-list');
                 if (cardsList) {
                     cardsList.innerHTML = '';
                 }
                 this.complaints = [];
 
-                // Adicionar reclamações do servidor
                 result.data.forEach(complaint => {
                     this.complaints.push(complaint);
                     this.addComplaintCard(complaint);

@@ -14,7 +14,6 @@ class ComplaintManager {
     }
 
     setMaxDate() {
-        // Definir data máxima como hoje
         const dataInput = document.getElementById('data');
         if (dataInput) {
             const hoje = new Date().toISOString().split('T')[0];
@@ -78,12 +77,10 @@ class ComplaintManager {
             const result = await response.json();
 
             if (result.status === 'success') {
-                // Limpar lista atual
                 const cardsList = document.getElementById('claims-list');
                 cardsList.innerHTML = '';
                 this.complaints = [];
 
-                // Adicionar reclamações do servidor
                 result.data.forEach(complaint => {
                     this.complaints.push(complaint);
                     this.addComplaintCard(complaint);
@@ -103,7 +100,6 @@ class ComplaintManager {
     async submitComplaint() {
         const formData = new FormData(document.getElementById('complaint-form'));
 
-        // Validar data (não pode ser futura)
         const dataOcorrencia = formData.get('data');
         const hoje = new Date().toISOString().split('T')[0];
 
@@ -113,7 +109,6 @@ class ComplaintManager {
         }
 
         try {
-            // Enviar dados para o PHP
             const response = await fetch('../php/criar_reclamacao.php', {
                 method: 'POST',
                 body: formData
@@ -125,10 +120,8 @@ class ComplaintManager {
                 this.showSuccessMessage(result.message);
                 this.resetForm();
 
-                // Recarregar reclamações do servidor
                 await this.loadComplaintsFromServer();
 
-                // Rola para a seção de reclamações
                 document.querySelector('.claims').scrollIntoView({ behavior: 'smooth' });
             } else {
                 this.showSuccessMessage(result.message, 'error');
@@ -150,12 +143,10 @@ class ComplaintManager {
             ? `${complaint.endereco}, ${complaint.numero} - ${complaint.complemento}`
             : `${complaint.endereco}, ${complaint.numero}`;
 
-        // Formatar data
         const dataFormatada = complaint.data_ocorrencia ?
             new Date(complaint.data_ocorrencia).toLocaleDateString('pt-BR') :
             complaint.data;
 
-        // Determinar ícone e texto do status
         let statusIcon, statusText, statusClass;
         switch (complaint.status) {
             case 'recebido':

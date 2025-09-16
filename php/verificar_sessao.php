@@ -1,11 +1,9 @@
 <?php
-// Iniciar sessão
 session_start();
 
-// Definir header para JSON
 header('Content-Type: application/json');
 
-// Verificar se usuário está logado
+
 if (!isset($_SESSION['usuario_id'])) {
     echo json_encode([
         'status' => 'error',
@@ -15,7 +13,7 @@ if (!isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-// Retornar dados do usuário
+
 echo json_encode([
     'status' => 'success',
     'usuario' => [

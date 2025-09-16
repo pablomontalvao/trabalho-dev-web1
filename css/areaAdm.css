@@ -2,8 +2,8 @@
   --brand-300: #3aaaf8;
   --brand-800: #1a70ab;
   --text: #083f6b;
-  --text-light: #ffffff; 
-  --muted: #6d6d6d; 
+  --text-light: #ffffff;
+  --muted: #6d6d6d;
   --card-bg: rgba(255, 255, 255, 0.9);
   --card-border: #e0e0e0;
   --warn: #eea800;
@@ -38,50 +38,61 @@ textarea {
   margin: 0 auto;
 }
 
-
 .logo {
-  width: 100px;   
-  height: auto;   
+  width: 100px;
+  height: auto;
 }
 
 .navbar {
-  background-color: #3AABDD; 
-}
-.header{
-    background-color: #3AABDD;
-    height: 160px;
+  background-color: #3AABDD;
 }
 
-.nav-link{
+.header {
+  background-color: #3AABDD;
+  height: 160px;
+}
+
+.nav-link {
   color: white;
   font-family: 'Montserrat';
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
 }
-.nav-link:hover{
-    color:#dfdfdf;
+
+.nav-link:hover {
+  color: #dfdfdf;
 }
-.nav-link.active{
-    color: white;
+
+.nav-link.active {
+  color: white;
 }
 
 
 
 .btn {
-  padding: 6px 16px;
-  border-radius: 6px;
-  background: #d9d9d9;
+  border-radius: 30px;
+  padding: 7px 60px;
   color: #fff;
-  text-decoration: none;
-  font-weight: 600;
+  background-color: #3AABDD;
+  font-size: 20px;
+  font-weight: 700;
   border: none;
   cursor: pointer;
-  transition: background-color 0.2s ease;
 }
 
 .btn:hover {
-  background: #c0c0c0;
+  opacity: 0.95;
+}
+
+/* formulário inputs padrão */
+.form-control {
+  border-radius: 30px;
+  padding: 10px 15px;
+}
+
+.form-control::placeholder {
+  color: #bbbbbb;
 }
 
 .btn--small {
@@ -130,7 +141,11 @@ textarea {
 }
 
 
-.filters { margin-top: 0; padding: 16px 0 8px; }
+.filters {
+  margin-top: 0;
+  padding: 16px 0 8px;
+}
+
 .filters__row {
   margin-top: 12px;
   display: flex;
@@ -147,7 +162,7 @@ textarea {
 }
 
 .filters__title {
-  color: #fff; 
+  color: #fff;
   font-size: 24px;
   font-weight: 700;
   margin: 0;
@@ -156,7 +171,7 @@ textarea {
 .filters__divider {
   width: 3px;
   height: 100%;
-  background-color: #fff; 
+  background-color: #fff;
   border-radius: 2px;
 }
 
@@ -181,7 +196,7 @@ textarea {
 }
 
 .field input,
-.field select{
+.field select {
   background: #f0f0f0;
   border: 2px solid var(--card-border);
   border-radius: 30px;
@@ -202,9 +217,15 @@ textarea {
   grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
-.field--dates input { height: 34px; }
 
-#clear-filters-btn { border-radius: 30px; white-space: nowrap; }
+.field--dates input {
+  height: 34px;
+}
+
+#clear-filters-btn {
+  border-radius: 30px;
+  white-space: nowrap;
+}
 
 .no-results {
   text-align: center;
@@ -562,6 +583,21 @@ textarea {
   .header__logo {
     width: 140px;
     height: 100px;
+  }
+
+  @media (max-width: 480px) {
+    .btn {
+      padding: 8px 24px;
+      font-size: 16px;
+    }
+
+    .form-control {
+      padding: 8px 12px;
+    }
+
+    .container {
+      width: 94%;
+    }
   }
 
   .filters__row {

@@ -14,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-//verifica se o usuário está logado
 if (!isset($_SESSION['usuario_id'])) {
     echo json_encode([
         'status' => 'error',
@@ -46,7 +45,6 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 
 try {
-    //verifica se o novo email ja est em uso por outro usuario
     $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ? AND id != ?");
     $stmt->execute([$email, $id_usuario]);
     
@@ -58,7 +56,6 @@ try {
         exit();
     }
     
-    //atualizando os dados do usuario no bd
     $stmt = $pdo->prepare("UPDATE usuarios SET nome = ?, email = ?, telefone = ? WHERE id = ?");
     $resultado = $stmt->execute([$nome, $email, $telefone, $id_usuario]);
     

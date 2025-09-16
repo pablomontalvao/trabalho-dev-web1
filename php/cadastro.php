@@ -1,11 +1,8 @@
 <?php
-// Definir header para JSON
 header('Content-Type: application/json');
 
-// Incluir conexão com banco
 require_once 'conexao.php';
 
-// Verificar se é método POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode([
         'status' => 'error',
@@ -14,15 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-// Receber dados do POST
 $nome = $_POST['nome'] ?? '';
 $email = $_POST['email'] ?? '';
 $senha = $_POST['senha'] ?? '';
 $telefone = $_POST['telefone'] ?? '';
-// se não foi fornecida função, assumimos 'cliente' por padrão (cadastro público)
 $funcao = $_POST['funcao'] ?? 'cliente';
 
-// Só permita criar um adm se o usuário atual estiver logado e for adm
 session_start();
 if ($funcao === 'adm') {
     if (!isset($_SESSION['usuario_id']) || ($_SESSION['usuario_funcao'] ?? '') !== 'adm') {
@@ -34,7 +28,6 @@ if ($funcao === 'adm') {
     }
 }
 
-// Validar campos obrigatórios
 if (empty($nome) || empty($email) || empty($senha) || empty($telefone)) {
     echo json_encode([
         'status' => 'error',
@@ -43,7 +36,6 @@ if (empty($nome) || empty($email) || empty($senha) || empty($telefone)) {
     exit();
 }
 
-// Validar email
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo json_encode([
         'status' => 'error',
@@ -52,7 +44,6 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit();
 }
 
-// Validar senha (mínimo 6 caracteres)
 if (strlen($senha) < 6) {
     echo json_encode([
         'status' => 'error',
@@ -61,17 +52,7 @@ if (strlen($senha) < 6) {
     exit();
 }
 
-// Validar telefone (formato básico)
-if (!preg_match('/^\(\d{2}\)\s\d{4,5}-\d{4}$/', $telefone) && !preg_match('/^\d{2}\s\d{4,5}-\d{4}$/', $telefone)) {
-    echo json_encode([
-        'status' => 'error',
-        'message' => 'Telefone inválido. Use o formato: (34) 99999-9999 ou 34 99999-9999'
-    ]);
-    exit();
-}
-
 try {
-    // Verificar se email já existe
     $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ?");
     $stmt->execute([$email]);
     
@@ -83,10 +64,8 @@ try {
         exit();
     }
     
-    // Gerar hash da senha
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
     
-    // Inserir novo usuário
     $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, telefone, funcao) VALUES (?, ?, ?, ?, ?)");
     $resultado = $stmt->execute([$nome, $email, $senhaHash, $telefone, $funcao]);
     

@@ -1,11 +1,8 @@
 <?php
-// Iniciar sessão
 session_start();
 
-// Definir header para JSON
 header('Content-Type: application/json');
 
-// Verificar se usuário está logado
 if (!isset($_SESSION['usuario_id'])) {
     echo json_encode([
         'status' => 'error',
@@ -14,16 +11,13 @@ if (!isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-// Incluir conexão com banco
 require_once 'conexao.php';
 
 try {
     $usuario_id = $_SESSION['usuario_id'];
     $funcao = $_SESSION['usuario_funcao'];
     
-    // Preparar query baseada na função do usuário
     if ($funcao === 'adm') {
-        // Admin vê todas as reclamações
         $stmt = $pdo->prepare("
             SELECT r.*, u.nome as usuario_nome, u.email as usuario_email 
             FROM reclamacoes r 
@@ -32,7 +26,6 @@ try {
         ");
         $stmt->execute();
     } else {
-        // Cliente vê apenas suas reclamações
         $stmt = $pdo->prepare("
             SELECT r.*, u.nome as usuario_nome, u.email as usuario_email 
             FROM reclamacoes r 

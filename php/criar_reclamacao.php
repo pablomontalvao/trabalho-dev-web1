@@ -1,11 +1,8 @@
 <?php
-// Iniciar sessão
 session_start();
 
-// Definir header para JSON
 header('Content-Type: application/json');
 
-// Verificar se usuário está logado
 if (!isset($_SESSION['usuario_id'])) {
     echo json_encode([
         'status' => 'error',
@@ -14,7 +11,6 @@ if (!isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-// Verificar se é método POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode([
         'status' => 'error',
@@ -23,10 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-// Incluir conexão com banco
 require_once 'conexao.php';
 
-// Receber dados do POST
 $tipo = $_POST['tipo'] ?? '';
 $endereco = $_POST['endereco'] ?? '';
 $numero = $_POST['numero'] ?? '';
@@ -35,7 +29,6 @@ $data = $_POST['data'] ?? '';
 $hora = $_POST['hora'] ?? '';
 $descricao = $_POST['descricao'] ?? '';
 
-// Validar campos obrigatórios
 if (empty($tipo) || empty($endereco) || empty($numero) || empty($data) || empty($descricao)) {
     echo json_encode([
         'status' => 'error',
@@ -45,7 +38,6 @@ if (empty($tipo) || empty($endereco) || empty($numero) || empty($data) || empty(
 }
 
 try {
-    // Inserir nova reclamação
     $stmt = $pdo->prepare("
         INSERT INTO reclamacoes (usuario_id, tipo, endereco, numero, complemento, data_ocorrencia, hora_ocorrencia, descricao, status, data_criacao) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'recebido', NOW())
