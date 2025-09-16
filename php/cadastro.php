@@ -19,10 +19,23 @@ $nome = $_POST['nome'] ?? '';
 $email = $_POST['email'] ?? '';
 $senha = $_POST['senha'] ?? '';
 $telefone = $_POST['telefone'] ?? '';
-$funcao = $_POST['funcao'] ?? '';
+// se não foi fornecida função, assumimos 'cliente' por padrão (cadastro público)
+$funcao = $_POST['funcao'] ?? 'cliente';
+
+// Só permita criar um adm se o usuário atual estiver logado e for adm
+session_start();
+if ($funcao === 'adm') {
+    if (!isset($_SESSION['usuario_id']) || ($_SESSION['usuario_funcao'] ?? '') !== 'adm') {
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Apenas administradores podem criar usuários com função de administrador.'
+        ]);
+        exit();
+    }
+}
 
 // Validar campos obrigatórios
-if (empty($nome) || empty($email) || empty($senha) || empty($telefone) || empty($funcao)) {
+if (empty($nome) || empty($email) || empty($senha) || empty($telefone)) {
     echo json_encode([
         'status' => 'error',
         'message' => 'Todos os campos são obrigatórios'

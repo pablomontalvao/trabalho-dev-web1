@@ -44,14 +44,6 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit();
 }
 
-//valida telefone
-if (!preg_match('/^\(\d{2}\)\s\d{4,5}-\d{4}$/', $telefone) && !preg_match('/^\d{2}\s\d{4,5}-\d{4}$/', $telefone)) {
-    echo json_encode([
-        'status' => 'error',
-        'message' => 'Telefone inválido. Use o formato: (34) 99999-9999'
-    ]);
-    exit();
-}
 
 try {
     //verifica se o novo email ja est em uso por outro usuario

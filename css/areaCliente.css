@@ -48,11 +48,11 @@ textarea {
 }
 
 .nav-link{
-    color: white;
-    font-family: 'Montserrat';
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
+  color: white;
+  font-family: 'Montserrat';
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 .nav-link:hover{
     color:#dfdfdf;

@@ -13,29 +13,25 @@
 <body>
   <div class="header">
     <nav class="navbar navbar-expand-lg navbar-custom p-2">
-          <div class="container-fluid">
-              <a class="navbar-brand" href="#">
-                  <img src="../imagem/logobranca.png" alt="Logo RAU" class="logo-img">
-              </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavbar">
-              <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="menuNavbar">
-                  <ul class="navbar-nav me-auto">
-                      <li class="nav-item">
-                          <a class="nav-link px-5" href="inicial.html">Home</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link px-3" href="sobre.html">Sobre Nós</a>
-                      </li>
-                  </ul>
-                  <ul class="navbar-nav">
-                      <li class="nav-item">
-                          <a class="nav-link px-5" href="loginpage.html">Cadastro/Login</a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="../imagem/logobranca.png" alt="Logo RAU" class="logo-img">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavbar" aria-controls="menuNavbar" aria-expanded="false" aria-label="Alternar navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuNavbar">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link px-5" href="inicial.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3" href="sobre.html">Sobre Nós</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav" id="header-right"></ul>
+        </div>
+      </div>
     </nav>
   </div>
   
@@ -68,4 +64,5 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 <script src="../scripts/perfil.js" defer></script>
+<script src="../scripts/header.js"></script>
 </html>

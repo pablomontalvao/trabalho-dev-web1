@@ -1,5 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Verificar se a query string contém admin=1 para habilitar seleção de função
+    (async function checkAdminMode() {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('admin') === '1') {
+                // verificar sessão e se é adm
+                const resp = await fetch('../php/verificar_sessao.php', { credentials: 'include' });
+                const data = await resp.json();
+                if (data.status === 'success' && data.usuario && data.usuario.funcao === 'adm') {
+                    const container = document.getElementById('funcao-admin-container');
+                    if (container) container.style.display = 'block';
+                } else {
+                    // se não for adm, redirecionar ou ocultar o parâmetro
+                    // removemos o parâmetro para evitar confusão
+                    history.replaceState(null, '', window.location.pathname);
+                }
+            }
+        } catch (e) {
+            console.error('Erro ao verificar modo admin:', e);
+        }
+    })();
+
+
     const form = document.querySelector('form');
 
     form.addEventListener('submit', async (event) => {
@@ -10,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email').value;
         const senha = document.getElementById('senha').value;
         const telefone = document.getElementById('tel').value;
+        // tentar obter seleção (pode não existir para usuários públicos)
         const funcaoSelecionada = document.querySelector('input[name="funcaoPessoa"]:checked');
 
         // Validar campos obrigatórios
@@ -18,9 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        if (!funcaoSelecionada) {
-            showMessage('Por favor, selecione uma função (Administrador ou Cliente).', 'error');
-            return;
+        // Função padrão: cliente
+        let valorFuncao = 'cliente';
+        if (funcaoSelecionada) {
+            valorFuncao = funcaoSelecionada.value === 'adm' ? 'adm' : 'cliente';
         }
 
         // Validar senha (mínimo 6 caracteres)
@@ -29,9 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        // Converter valor da função
-        const valorFuncao = funcaoSelecionada.value === 'opcao1' ? 'adm' : 'cliente';
-
         // Preparar dados para envio
         const formData = new FormData();
         formData.append('nome', nome);
